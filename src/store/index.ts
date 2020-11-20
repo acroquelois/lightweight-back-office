@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 
-export default createStore({
+const store = createStore({
   state: {
     user: {
       loggedIn: false,
@@ -8,7 +8,7 @@ export default createStore({
     },
   },
   getters: {
-    user(state: any) {
+    user : state => {
       return state.user
     },
   },
@@ -34,3 +34,5 @@ export default createStore({
     },
   },
 })
+
+export default store

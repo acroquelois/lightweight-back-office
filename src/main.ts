@@ -16,9 +16,10 @@ const configOptions = {
   messagingSenderId: '603179471698',
   appId: '1:603179471698:web:cd76bfc2e3700d9082a08b',
 }
+
+createApp(App).use(store).use(router).mount('#app')
+
 firebase.default.initializeApp(configOptions)
 firebase.default.auth().onAuthStateChanged((user) => {
   store.dispatch('fetchUser', user)
 })
-
-createApp(App).use(router).use(store).mount('#app')

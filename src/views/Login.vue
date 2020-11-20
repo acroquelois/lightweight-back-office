@@ -5,13 +5,13 @@
         <div class="space-y-4 px-8 py-4">
           <span class="text-4xl font-bold">Sign In</span>
           <input
-            v-model="username"
+            v-model="userAuth.username"
             type="text"
             placeholder="Username"
             class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
           />
           <input
-            v-model="password"
+            v-model="userAuth.password"
             type="password"
             placeholder="Password"
             class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
@@ -32,25 +32,38 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component'
 import firebase from 'firebase'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
-export default class Login extends Vue {
-  username = ''
-  password = ''
+export default {
+  setup() {
+    const router = useRouter()
+    const store = useStore()
 
-  $router: any
+    const userAuth = reactive({
+      username: '',
+      password: '',
+    })
 
-  submit = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.username, this.password)
-      .then(() => {
-        this.$router.replace({ name: 'Home' })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+    const submit = () => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(userAuth.username, userAuth.password)
+        .then(() => {
+          store.dispatch('')
+          router.replace({ name: 'Home' })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+
+    return {
+      userAuth,
+      submit,
+    }
+  },
 }
 </script>
