@@ -1,9 +1,19 @@
 <template>
-  <p>Home</p>
+  <p>{{ data }}</p>
 </template>
 
 <script lang="ts">
-export default {}
+import { useQuery } from 'villus'
+
+export default {
+  setup() {
+    const { data } = useQuery({
+      query: '{ Questions { Id \n Libelle \n }}',
+    })
+
+    return { data }
+  },
+}
 </script>
 
 <style scoped>
