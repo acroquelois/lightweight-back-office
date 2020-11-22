@@ -32,12 +32,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, reactive } from 'vue'
 import firebase from 'firebase'
-import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
-export default {
+export default defineComponent({
   setup() {
     const router = useRouter()
     const store = useStore()
@@ -65,5 +65,5 @@ export default {
       submit,
     }
   },
-}
+})
 </script>

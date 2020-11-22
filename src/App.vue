@@ -4,14 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useClient } from 'villus'
-export default defineComponent({
-  setup() {
-    useClient({
-      url: 'http://localhost:9010/v1/graphql', // your endpoint.
-    })
-  },
-})
+export default defineComponent({})
 </script>
 
 <style>
