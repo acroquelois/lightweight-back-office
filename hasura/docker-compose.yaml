@@ -20,6 +20,7 @@ services:
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432
+      HASURA_GRAPHQL_ADMIN_SECRET: questionsecretkey
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_DEV_MODE: "false"
 volumes:
