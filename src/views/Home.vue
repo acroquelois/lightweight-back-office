@@ -77,13 +77,13 @@
         +
       </button>
     </template>
-    <delete-modal
-      title="Delete"
-      message="Do you want delete this question ?"
-      :show-modal="showDeleteModal"
-      @close="showDeleteModal = false"
-      @accept="deleteQuestion"
-    ></delete-modal>
+    <!--    <delete-modal-->
+    <!--      ref="deleteModal"-->
+    <!--      title="Delete"-->
+    <!--      message="Do you want delete this question ?"-->
+    <!--      :show-modal="showDeleteModal"-->
+    <!--      @close="showDeleteModal = false"-->
+    <!--    ></delete-modal>-->
   </div>
 </template>
 
@@ -99,7 +99,6 @@ import {
 } from '@/generated/graphql'
 import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
-import DeleteModal from '@/components/modals/DeleteModal.vue'
 import { useRouter } from 'vue-router'
 
 interface QuestionsResponse {
@@ -109,7 +108,6 @@ interface QuestionsResponse {
 export default defineComponent({
   components: {
     Icon,
-    DeleteModal,
   },
   setup() {
     const router = useRouter()
@@ -126,6 +124,7 @@ export default defineComponent({
     const editQuestion = () => {
       console.log('ping icon')
     }
+
     const { execute: executeDelete, isDone: doneDelete } = useMutation(
       DELETE_QUESTIONS,
     )
