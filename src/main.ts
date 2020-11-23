@@ -5,6 +5,7 @@ import store from './store'
 import * as firebase from 'firebase'
 
 import './assets/styles/tailwind.css'
+import { withProvider, defaultPlugins } from 'villus'
 
 // Setup Firebase
 const configOptions = {
@@ -17,7 +18,18 @@ const configOptions = {
   appId: '1:603179471698:web:cd76bfc2e3700d9082a08b',
 }
 
-createApp(App).use(store).use(router).mount('#app')
+function authPlugin({ opContext }: any) {
+  opContext.headers['x-hasura-admin-secret'] = 'questionsecretkey'
+}
+
+const clientOptions = {
+  url: 'http://localhost:9010/v1/graphql',
+  use: [authPlugin, ...defaultPlugins()],
+}
+
+const AppWithClient = withProvider(App, clientOptions)
+
+createApp(AppWithClient).use(store).use(router).mount('#app')
 
 firebase.default.initializeApp(configOptions)
 firebase.default.auth().onAuthStateChanged((user) => {

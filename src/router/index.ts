@@ -28,12 +28,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('ping')
-  console.log('target', store.getters)
   const isLogged = store.getters.user
-  console.log('from', from.path)
-  console.log('user', isLogged)
-  console.log('isLogg', isLogged.loggedIn)
   if (!isLogged && to.path != '/login') {
     next({ name: 'Login' })
     return
