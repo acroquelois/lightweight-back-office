@@ -7,7 +7,7 @@
     <div
       class="mt-3 py-2 text-white font-semibold bg-blue-600 flex rounded-t-md"
     >
-      <div class="flex flex-1 justify-center">
+      <div class="flex flex-1 max-w-xs justify-center" style="max-width: 200px">
         <span class="px-3">Type</span>
       </div>
       <div class="flex flex-1 justify-center">
@@ -19,7 +19,7 @@
       <div class="flex flex-1 justify-center">
         <span class="px-3">Propositions</span>
       </div>
-      <div class="flex flex-1 justify-center">
+      <div class="flex flex-1 justify-center" style="max-width: 100px">
         <span class="px-3">Action</span>
       </div>
     </div>
@@ -31,7 +31,7 @@
           :key="question.Id"
         >
           <div class="p-1 flex flex-1 bg-gray-200 rounded-md">
-            <div class="flex flex-1 justify-center">
+            <div class="flex flex-1 max-w-sm justify-center" style="max-width: 200px">
               <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
             </div>
             <div class="flex flex-1">
@@ -45,19 +45,19 @@
                 computePropositions(question.QuestionPropositions)
               }}</span>
             </div>
-            <div class="flex-1">
+            <div class="flex-1" style="max-width: 100px">
               <div class="flex justify-center">
                 <icon
-                  class="mr-1"
+                  class="mr-2"
                   name="edit-2"
-                  color="blue"
+                  color="#2563EB"
                   :clickable="true"
                   @on-click="editQuestion"
                 ></icon>
                 <icon
-                  class="ml-1"
+                  class="ml-2"
                   name="trash-2"
-                  color="red"
+                  color="#EF4444"
                   :clickable="true"
                   @on-click="deleteQuestion(question.Id)"
                 ></icon>
@@ -137,9 +137,13 @@ export default defineComponent({
       propositions: UnwrapRef<Questions['QuestionPropositions']>,
     ) => {
       let response = ''
-      propositions.forEach((proposition: QuestionPropositions) => {
-        response += `${proposition.Libelle};`
-      })
+      propositions.forEach(
+        (proposition: QuestionPropositions, index: number) => {
+          response += `${proposition.Libelle}${
+            index == propositions.length - 1 ? '' : ' | '
+          }`
+        },
+      )
       return response
     }
     return {
