@@ -78,8 +78,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { Ref } from 'vue-demi'
+import { defineComponent, ref, watchEffect, watch } from 'vue'
 import { UnwrapRef } from 'vue-demi'
 import { useMutation, useQuery } from 'villus'
 import {
@@ -88,7 +87,7 @@ import {
   QuestionPropositions,
   Questions,
 } from '@/generated/graphql'
-
+import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
 import DeleteModal from '@/components/modals/DeleteModal.vue'
 
@@ -103,32 +102,37 @@ export default defineComponent({
   },
   setup() {
     const showDeleteModal = ref(false)
-    const getQuestions = (): Ref<QuestionsResponse | null> => {
-      const { data } = useQuery<QuestionsResponse, Query_RootQuestionsArgs>({
-        query: require('../graphql/getQuestions.graphql'),
-        variables: {},
-      })
-      return data
-    }
-    const questions = getQuestions()
+    const { data, execute: executeGet } = useQuery<
+      QuestionsResponse,
+      Query_RootQuestionsArgs
+    >({
+      query: GET_QUESTIONS,
+      cachePolicy: 'network-only',
+    })
+    const questions = data
 
     const editQuestion = () => {
       console.log('ping icon')
     }
-
-    const { execute } = useMutation(
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      require('../graphql/deleteQuestion.graphql'),
+    const { execute: executeDelete, isDone: doneDelete } = useMutation(
+      DELETE_QUESTIONS,
     )
     const deleteQuestion = (id: number) => {
-      console.log('delete', id)
       if (id) {
         const variables = {
           id: id,
         }
-        execute(variables)
+        executeDelete(variables)
       }
     }
+
+    watchEffect(() => {
+      if (doneDelete.value) {
+        executeGet()
+        doneDelete.value = false
+      }
+    })
+
     const computePropositions = (
       propositions: UnwrapRef<Questions['QuestionPropositions']>,
     ) => {
@@ -140,7 +144,6 @@ export default defineComponent({
     }
     return {
       questions,
-      getQuestions,
       computePropositions,
       editQuestion,
       showDeleteModal,

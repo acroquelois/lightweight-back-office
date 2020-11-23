@@ -11056,7 +11056,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-villus@^1.0.0-rc.4:
+villus@^1.0.0-rc.1:
   version "1.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/villus/-/villus-1.0.0-rc.4.tgz#1ea54ae052a77fc1081de1fbc492a72d4824f840"
   integrity sha512-fp+5vWb2KzB0FYZ0PrI8OHLGBQD+JVdxDqb2LtI7DVvdeYevCTZwH28EglGr1sGVBMvA0YZv8OTsYIr+R0pEQQ==
@@ -11099,7 +11099,7 @@ vue-hot-reload-api@^2.3.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
-vue-loader@^15.9.2, vue-loader@^15.9.5:
+vue-loader@^15.9.2:
   version "15.9.5"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.9.5.tgz#7a960dc420a3439deaacdda038fdcdbf7c432706"
   integrity sha512-oeMOs2b5o5gRqkxfds10bCx6JeXYTwivRgbb8hzOrcThD2z1+GqEKE3EX9A2SGbsYDf4rXwRg6D5n1w0jO5SwA==
