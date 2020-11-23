@@ -5,7 +5,7 @@ import store from './store'
 import * as firebase from 'firebase'
 
 import './assets/styles/tailwind.css'
-import { withProvider, defaultPlugins  } from 'villus'
+import { withProvider, defaultPlugins } from 'villus'
 
 // Setup Firebase
 const configOptions = {

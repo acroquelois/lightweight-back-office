@@ -1,91 +1,137 @@
 <template>
   <div class="mx-32 justify-center">
-    <div class="text-gray-700 bg-gray-300 flex">
-      <div class="flex-1">
+    <div class="mt-8 text-4xl font-bold">
+      <span>Questions list:</span>
+    </div>
+
+    <div
+      class="mt-3 py-2 text-white font-semibold bg-blue-600 flex rounded-t-md"
+    >
+      <div class="flex flex-1 justify-center">
         <span class="px-3">Type</span>
       </div>
-      <div class="flex-1">
+      <div class="flex flex-1 justify-center">
         <span class="px-3">Question</span>
       </div>
-      <div class="flex-1">
+      <div class="flex flex-1 justify-center">
         <span class="px-3">Réponse</span>
       </div>
-      <div class="flex-1">
+      <div class="flex flex-1 justify-center">
         <span class="px-3">Propositions</span>
       </div>
-      <div class="flex-1">
+      <div class="flex flex-1 justify-center">
         <span class="px-3">Action</span>
       </div>
     </div>
     <template v-if="questions">
-      <div
-        class="flex"
-        v-for="question in questions.Questions"
-        :key="question.Id"
-      >
-        <div class="flex flex-1 bg-gray-200">
-          <div class="flex-1">
-            <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
-          </div>
-          <div class="flex-1">
-            <span class="px-3">{{ question.Libelle }}</span>
-          </div>
-          <div class="flex-1">
-            <span class="px-3">{{ question.QuestionAnswer.Libelle }}</span>
-          </div>
-          <div class="flex-1">
-            <span class="px-3">{{ question.QuestionPropositions }}</span>
-          </div>
-          <div class="flex-1">
-            <span class="px-3"></span>
+      <div class="p-1 bg-blue-200 space-y-1">
+        <div
+          class="flex"
+          v-for="question in questions.Questions"
+          :key="question.Id"
+        >
+          <div class="p-1 flex flex-1 bg-gray-200 rounded-md">
+            <div class="flex flex-1 justify-center">
+              <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
+            </div>
+            <div class="flex flex-1">
+              <span class="px-3">{{ question.Libelle }}</span>
+            </div>
+            <div class="flex flex-1 justify-center">
+              <span class="px-3">{{ question.QuestionAnswer.Libelle }}</span>
+            </div>
+            <div class="flex flex-1 justify-center">
+              <span class="px-3">{{
+                computePropositions(question.QuestionPropositions)
+              }}</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-center">
+                <icon
+                  class="mr-1"
+                  name="edit-2"
+                  color="blue"
+                  :clickable="true"
+                  @on-click="editQuestion"
+                ></icon>
+                <icon
+                  class="ml-1"
+                  name="trash-2"
+                  color="red"
+                  :clickable="true"
+                  @on-click="showDeleteModal = true"
+                ></icon>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </template>
+    <delete-modal
+      title="Delete"
+      message="Do you want delete this question ?"
+      :show-modal="showDeleteModal"
+      @close="showDeleteModal = false"
+      @accept="deleteQuestion"
+    ></delete-modal>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useQuery } from 'villus'
-import { Query_RootQuestionsArgs, Query_Root } from '@/generated/graphql'
-import gql from 'graphql-tag'
+import { defineComponent, ref } from 'vue'
+import { UnwrapRef } from 'vue-demi'
+import { useMutation, useQuery } from 'villus'
+import {
+  Query_RootQuestionsArgs,
+  Query_Root,
+  QuestionPropositions,
+  Questions,
+  Mutation_RootDelete_QuestionsArgs,
+} from '@/generated/graphql'
+
+import Icon from '@/components/icons/Icon.vue'
+import DeleteModal from '@/components/modals/DeleteModal.vue'
 
 interface QuestionsResponse {
   Questions: Query_Root['Questions']
 }
 
 export default defineComponent({
-  // props: {
-  //   questions: {
-  //     type: Object as Query_Root['Questions'],
-  //     required: false,
-  //     default: {},
-  //   },
-  // },
+  components: {
+    Icon,
+    DeleteModal,
+  },
   setup() {
+    const showDeleteModal = ref(false)
     const { data } = useQuery<QuestionsResponse, Query_RootQuestionsArgs>({
-      query: gql`
-        {
-          Questions {
-            Id
-            Libelle
-            QuestionAnswer {
-              Libelle
-            }
-            QuestionCategory {
-              Libelle
-            }
-            QuestionPropositions {
-              Libelle
-            }
-          }
-        }
-      `,
+      query: require('../graphql/getQuestions.graphql'),
       variables: {},
     })
     const questions = data
-    return { questions }
+
+    const editQuestion = () => {
+      console.log('ping icon')
+    }
+
+    const deleteQuestion = () => {
+      console.log('delete')
+    }
+    const computePropositions = (
+      propositions: UnwrapRef<Questions['QuestionPropositions']>,
+    ) => {
+      let response = ''
+      propositions.forEach((proposition: QuestionPropositions) => {
+        response += `${proposition.Libelle};`
+      })
+      return response
+    }
+    return {
+      questions,
+      computePropositions,
+      editQuestion,
+      showDeleteModal,
+      deleteQuestion,
+    }
   },
 })
 </script>
