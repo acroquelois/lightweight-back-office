@@ -59,7 +59,7 @@
                   name="trash-2"
                   color="red"
                   :clickable="true"
-                  @on-click="showDeleteModal = true"
+                  @on-click="deleteQuestion(question.Id)"
                 ></icon>
               </div>
             </div>
@@ -79,6 +79,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { Ref } from 'vue-demi'
 import { UnwrapRef } from 'vue-demi'
 import { useMutation, useQuery } from 'villus'
 import {
@@ -86,7 +87,6 @@ import {
   Query_Root,
   QuestionPropositions,
   Questions,
-  Mutation_RootDelete_QuestionsArgs,
 } from '@/generated/graphql'
 
 import Icon from '@/components/icons/Icon.vue'
@@ -103,18 +103,31 @@ export default defineComponent({
   },
   setup() {
     const showDeleteModal = ref(false)
-    const { data } = useQuery<QuestionsResponse, Query_RootQuestionsArgs>({
-      query: require('../graphql/getQuestions.graphql'),
-      variables: {},
-    })
-    const questions = data
+    const getQuestions = (): Ref<QuestionsResponse | null> => {
+      const { data } = useQuery<QuestionsResponse, Query_RootQuestionsArgs>({
+        query: require('../graphql/getQuestions.graphql'),
+        variables: {},
+      })
+      return data
+    }
+    const questions = getQuestions()
 
     const editQuestion = () => {
       console.log('ping icon')
     }
 
-    const deleteQuestion = () => {
-      console.log('delete')
+    const { execute } = useMutation(
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      require('../graphql/deleteQuestion.graphql'),
+    )
+    const deleteQuestion = (id: number) => {
+      console.log('delete', id)
+      if (id) {
+        const variables = {
+          id: id,
+        }
+        execute(variables)
+      }
     }
     const computePropositions = (
       propositions: UnwrapRef<Questions['QuestionPropositions']>,
@@ -127,6 +140,7 @@ export default defineComponent({
     }
     return {
       questions,
+      getQuestions,
       computePropositions,
       editQuestion,
       showDeleteModal,
