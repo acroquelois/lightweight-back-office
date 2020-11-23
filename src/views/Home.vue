@@ -70,11 +70,11 @@
         </div>
       </div>
       <button
-        class="bg-blue-600 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        class="absolute bottom-0 right-0 mr-10 mb-10 bg-blue-600 active:bg-blue-700 text-white text-4xl font-medium uppercase text-sm rounded-full h-16 w-16 flex justify-center shadow hover:shadow-lg outline-none focus:outline-none"
         style="transition: all 0.15s ease"
         @click="goToAdding"
       >
-        Add
+        +
       </button>
     </template>
     <delete-modal
