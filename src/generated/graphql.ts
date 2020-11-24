@@ -822,14 +822,14 @@ export type Questions = {
   Libelle?: Maybe<Scalars['String']>
   /** An object relationship */
   QuestionAnswer: QuestionAnswers
-  QuestionAnswerId: Scalars['Int']
-  QuestionCategorieId: Scalars['Int']
+  QuestionAnswerId?: Scalars['Int']
+  QuestionCategorieId?: Scalars['Int']
   /** An object relationship */
   QuestionCategory: QuestionCategories
   /** An array relationship */
   QuestionPropositions: Array<QuestionPropositions>
   /** An aggregated array relationship */
-  QuestionPropositions_aggregate: QuestionPropositions_Aggregate
+  QuestionPropositions_aggregate?: QuestionPropositions_Aggregate
 }
 
 /** columns and relationships of "Questions" */
