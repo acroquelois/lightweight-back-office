@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import { Query_Root, Questions_Insert_Input } from '@/generated/graphql'
 
 export const GET_QUESTIONS = gql`
   query getAllQuestion {
@@ -17,6 +18,32 @@ export const GET_QUESTIONS = gql`
     }
   }
 `
+
+export interface QuestionResponse {
+  Questions_by_pk: Questions_Insert_Input
+}
+
+export const GET_QUESTION_BY_ID = gql`
+  query getQuestionbyId($Id: Int!) {
+    Questions_by_pk(Id: $Id) {
+      Id
+      Libelle
+      QuestionAnswer {
+        Id
+        Libelle
+      }
+      QuestionCategorieId
+      QuestionPropositions {
+        Id
+        Libelle
+      }
+    }
+  }
+`
+
+export interface QuestionCategoriesResponse {
+  QuestionCategories: Query_Root['QuestionCategories']
+}
 
 export const GET_QUESTION_CATEGORIES = gql`
   query getQuestionCategories {

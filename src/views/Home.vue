@@ -14,7 +14,7 @@
         <span class="px-3">Question</span>
       </div>
       <div class="flex flex-1 justify-center">
-        <span class="px-3">Réponse</span>
+        <span class="px-3">Response</span>
       </div>
       <div class="flex flex-1 justify-center">
         <span class="px-3">Propositions</span>
@@ -55,7 +55,7 @@
                   name="edit-2"
                   color="#2563EB"
                   :clickable="true"
-                  @on-click="editQuestion"
+                  @on-click="editQuestion(question.Id)"
                 ></icon>
                 <icon
                   class="ml-2"
@@ -69,13 +69,7 @@
           </div>
         </div>
       </div>
-      <button
-        class="absolute bottom-0 right-0 mr-10 mb-10 bg-blue-600 active:bg-blue-700 text-white text-4xl font-medium uppercase text-sm rounded-full h-16 w-16 flex justify-center shadow hover:shadow-lg outline-none focus:outline-none"
-        style="transition: all 0.15s ease"
-        @click="goToAdding"
-      >
-        +
-      </button>
+      <fab-button icon="plus" @on-click="goToAdding"></fab-button>
     </template>
     <!--    <delete-modal-->
     <!--      ref="deleteModal"-->
@@ -99,6 +93,7 @@ import {
 } from '@/generated/graphql'
 import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
+import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'
 
 interface QuestionsResponse {
@@ -108,6 +103,7 @@ interface QuestionsResponse {
 export default defineComponent({
   components: {
     Icon,
+    FabButton,
   },
   setup() {
     const router = useRouter()
@@ -121,8 +117,8 @@ export default defineComponent({
     })
     const questions = data
 
-    const editQuestion = () => {
-      console.log('ping icon')
+    const editQuestion = (id: number) => {
+      router.push({ name: 'Edit', params: { id: id } })
     }
 
     const { execute: executeDelete, isDone: doneDelete } = useMutation(

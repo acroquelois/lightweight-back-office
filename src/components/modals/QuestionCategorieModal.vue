@@ -85,9 +85,10 @@ export default defineComponent({
             Libelle: categorie.value,
           },
         }
-        execute(variable)
+        execute(variable).then(() => {
+          emits.emit('close')
+        })
         categorie.value = ''
-        emits.emit('close')
       }
     }
 
