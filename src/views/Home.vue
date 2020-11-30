@@ -96,10 +96,6 @@ import Icon from '@/components/icons/Icon.vue'
 import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'
 
-interface QuestionsResponse {
-  Questions: Query_Root['Questions']
-}
-
 export default defineComponent({
   components: {
     Icon,
@@ -109,7 +105,7 @@ export default defineComponent({
     const router = useRouter()
     const showDeleteModal = ref(false)
     const { data, execute: executeGet } = useQuery<
-      QuestionsResponse,
+      Query_Root,
       Query_RootQuestionsArgs
     >({
       query: GET_QUESTIONS,

@@ -1,7 +1,7 @@
 <template>
   <div class="mx-32 justify-center">
     <div class="mt-8 text-4xl font-bold">
-      <span>Add question:</span>
+      <span>Edit question:</span>
     </div>
     <div v-if="question">
       <question-form
@@ -10,6 +10,7 @@
         v-model:questionsProposition="
           question.Questions_by_pk.QuestionPropositions
         "
+        @save="saveQuestion"
       ></question-form>
     </div>
     <fab-button
@@ -22,8 +23,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Query_RootQuestions_By_PkArgs } from '@/generated/graphql'
-import { GET_QUESTION_BY_ID, QuestionResponse } from '@/graphql/graphql'
+import {
+  Query_Root,
+  Query_RootQuestions_By_PkArgs,
+} from '@/generated/graphql'
+import {
+  GET_QUESTION_BY_ID,
+  UPDATE_QUESTION,
+  InsertQuestion,
+} from '@/graphql/graphql'
 import { useRouter } from 'vue-router'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
@@ -36,12 +44,29 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const { data } = useQuery<QuestionResponse, Query_RootQuestions_By_PkArgs>({
+    const { data } = useQuery<Query_Root, Query_RootQuestions_By_PkArgs>({
       query: GET_QUESTION_BY_ID,
       variables: { Id: Number(router.currentRoute.value.params.id) },
       cachePolicy: 'network-only',
     })
     const question = data
+
+    const { execute: executeSaveQuestion } = useMutation(UPDATE_QUESTION)
+
+    const saveQuestion = () => {
+      //TODO: Voir la cast des objects query in mutation obj
+      const variable: InsertQuestion = {
+        Id: question.value.Questions_by_pk?.Id,
+        Libelle: question.value.Questions_by_pk?.Libelle,
+        QuestionCategorieId:
+          question.value.Questions_by_pk?.QuestionCategorieId,
+        QuestionAnswer: question.value.Questions_by_pk?.QuestionAnswer,
+        QuestionPropositions:
+          question.value.Questions_by_pk?.QuestionPropositions,
+      }
+      executeSaveQuestion(variable)
+    }
+
     const goToHome = () => {
       router.push({ name: 'Home' })
     }
@@ -49,6 +74,7 @@ export default defineComponent({
     return {
       question,
       goToHome,
+      saveQuestion,
     }
   },
 })

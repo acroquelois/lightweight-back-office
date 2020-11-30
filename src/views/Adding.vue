@@ -34,22 +34,23 @@ export default defineComponent({
     const router = useRouter()
     const initQuestion = () => {
       return {
-        Libelle: '',
+        Libelle: undefined,
         QuestionAnswer: {
           data: {
-            Libelle: '',
+            Libelle: undefined,
           },
         },
+        QuestionCategorieId: undefined,
         QuestionPropositions: {
           data: [
             {
-              Libelle: '',
+              Libelle: undefined,
             },
             {
-              Libelle: '',
+              Libelle: undefined,
             },
             {
-              Libelle: '',
+              Libelle: undefined,
             },
           ],
         },
@@ -59,7 +60,9 @@ export default defineComponent({
     const { execute: executeSaveQuestion } = useMutation(INSERT_QUESTION)
 
     const saveQuestion = () => {
-      const variable = { Question: question.data }
+      const variable = {
+        Question: question.data,
+      }
       executeSaveQuestion(variable)
       question.data = initQuestion()
     }
