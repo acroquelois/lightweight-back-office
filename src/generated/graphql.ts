@@ -9,6 +9,22 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  json: any
+  timestamptz: any
+  uuid: any
+}
+
+/** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
+export type Boolean_Comparison_Exp = {
+  _eq?: Maybe<Scalars['Boolean']>
+  _gt?: Maybe<Scalars['Boolean']>
+  _gte?: Maybe<Scalars['Boolean']>
+  _in?: Maybe<Array<Scalars['Boolean']>>
+  _is_null?: Maybe<Scalars['Boolean']>
+  _lt?: Maybe<Scalars['Boolean']>
+  _lte?: Maybe<Scalars['Boolean']>
+  _neq?: Maybe<Scalars['Boolean']>
+  _nin?: Maybe<Array<Scalars['Boolean']>>
 }
 
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
@@ -29,6 +45,28 @@ export type QuestionAnswers = {
   __typename?: 'QuestionAnswers'
   Id: Scalars['Int']
   Libelle?: Maybe<Scalars['String']>
+  /** An array relationship */
+  Questions: Array<Questions>
+  /** An aggregated array relationship */
+  Questions_aggregate: Questions_Aggregate
+}
+
+/** columns and relationships of "QuestionAnswers" */
+export type QuestionAnswersQuestionsArgs = {
+  distinct_on?: Maybe<Array<Questions_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Questions_Order_By>>
+  where?: Maybe<Questions_Bool_Exp>
+}
+
+/** columns and relationships of "QuestionAnswers" */
+export type QuestionAnswersQuestions_AggregateArgs = {
+  distinct_on?: Maybe<Array<Questions_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Questions_Order_By>>
+  where?: Maybe<Questions_Bool_Exp>
 }
 
 /** aggregated selection of "QuestionAnswers" */
@@ -96,6 +134,7 @@ export type QuestionAnswers_Avg_Order_By = {
 export type QuestionAnswers_Bool_Exp = {
   Id?: Maybe<Int_Comparison_Exp>
   Libelle?: Maybe<String_Comparison_Exp>
+  Questions?: Maybe<Questions_Bool_Exp>
   _and?: Maybe<Array<Maybe<QuestionAnswers_Bool_Exp>>>
   _not?: Maybe<QuestionAnswers_Bool_Exp>
   _or?: Maybe<Array<Maybe<QuestionAnswers_Bool_Exp>>>
@@ -116,6 +155,7 @@ export type QuestionAnswers_Inc_Input = {
 export type QuestionAnswers_Insert_Input = {
   Id?: Maybe<Scalars['Int']>
   Libelle?: Maybe<Scalars['String']>
+  Questions?: Maybe<Questions_Arr_Rel_Insert_Input>
 }
 
 /** aggregate max on columns */
@@ -170,6 +210,7 @@ export type QuestionAnswers_On_Conflict = {
 export type QuestionAnswers_Order_By = {
   Id?: Maybe<Order_By>
   Libelle?: Maybe<Order_By>
+  Questions_aggregate?: Maybe<Questions_Aggregate_Order_By>
 }
 
 /** primary key columns input for table: "QuestionAnswers" */
@@ -281,6 +322,28 @@ export type QuestionCategories = {
   __typename?: 'QuestionCategories'
   Id: Scalars['Int']
   Libelle?: Maybe<Scalars['String']>
+  /** An array relationship */
+  Questions: Array<Questions>
+  /** An aggregated array relationship */
+  Questions_aggregate: Questions_Aggregate
+}
+
+/** columns and relationships of "QuestionCategories" */
+export type QuestionCategoriesQuestionsArgs = {
+  distinct_on?: Maybe<Array<Questions_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Questions_Order_By>>
+  where?: Maybe<Questions_Bool_Exp>
+}
+
+/** columns and relationships of "QuestionCategories" */
+export type QuestionCategoriesQuestions_AggregateArgs = {
+  distinct_on?: Maybe<Array<Questions_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Questions_Order_By>>
+  where?: Maybe<Questions_Bool_Exp>
 }
 
 /** aggregated selection of "QuestionCategories" */
@@ -348,6 +411,7 @@ export type QuestionCategories_Avg_Order_By = {
 export type QuestionCategories_Bool_Exp = {
   Id?: Maybe<Int_Comparison_Exp>
   Libelle?: Maybe<String_Comparison_Exp>
+  Questions?: Maybe<Questions_Bool_Exp>
   _and?: Maybe<Array<Maybe<QuestionCategories_Bool_Exp>>>
   _not?: Maybe<QuestionCategories_Bool_Exp>
   _or?: Maybe<Array<Maybe<QuestionCategories_Bool_Exp>>>
@@ -368,6 +432,7 @@ export type QuestionCategories_Inc_Input = {
 export type QuestionCategories_Insert_Input = {
   Id?: Maybe<Scalars['Int']>
   Libelle?: Maybe<Scalars['String']>
+  Questions?: Maybe<Questions_Arr_Rel_Insert_Input>
 }
 
 /** aggregate max on columns */
@@ -422,6 +487,7 @@ export type QuestionCategories_On_Conflict = {
 export type QuestionCategories_Order_By = {
   Id?: Maybe<Order_By>
   Libelle?: Maybe<Order_By>
+  Questions_aggregate?: Maybe<Questions_Aggregate_Order_By>
 }
 
 /** primary key columns input for table: "QuestionCategories" */
@@ -819,17 +885,18 @@ export type QuestionPropositions_Variance_Order_By = {
 export type Questions = {
   __typename?: 'Questions'
   Id: Scalars['Int']
+  IsPublie?: Maybe<Scalars['Boolean']>
   Libelle?: Maybe<Scalars['String']>
   /** An object relationship */
   QuestionAnswer: QuestionAnswers
-  QuestionAnswerId?: Scalars['Int']
-  QuestionCategorieId?: Scalars['Int']
+  QuestionAnswerId: Scalars['Int']
+  QuestionCategorieId: Scalars['Int']
   /** An object relationship */
   QuestionCategory: QuestionCategories
   /** An array relationship */
   QuestionPropositions: Array<QuestionPropositions>
   /** An aggregated array relationship */
-  QuestionPropositions_aggregate?: QuestionPropositions_Aggregate
+  QuestionPropositions_aggregate: QuestionPropositions_Aggregate
 }
 
 /** columns and relationships of "Questions" */
@@ -918,6 +985,7 @@ export type Questions_Avg_Order_By = {
 /** Boolean expression to filter rows from the table "Questions". All fields are combined with a logical 'AND'. */
 export type Questions_Bool_Exp = {
   Id?: Maybe<Int_Comparison_Exp>
+  IsPublie?: Maybe<Boolean_Comparison_Exp>
   Libelle?: Maybe<String_Comparison_Exp>
   QuestionAnswer?: Maybe<QuestionAnswers_Bool_Exp>
   QuestionAnswerId?: Maybe<Int_Comparison_Exp>
@@ -945,6 +1013,7 @@ export type Questions_Inc_Input = {
 /** input type for inserting data into table "Questions" */
 export type Questions_Insert_Input = {
   Id?: Maybe<Scalars['Int']>
+  IsPublie?: Maybe<Scalars['Boolean']>
   Libelle?: Maybe<Scalars['String']>
   QuestionAnswer?: Maybe<QuestionAnswers_Obj_Rel_Insert_Input>
   QuestionAnswerId?: Maybe<Scalars['Int']>
@@ -1012,6 +1081,7 @@ export type Questions_On_Conflict = {
 /** ordering options when selecting data from "Questions" */
 export type Questions_Order_By = {
   Id?: Maybe<Order_By>
+  IsPublie?: Maybe<Order_By>
   Libelle?: Maybe<Order_By>
   QuestionAnswer?: Maybe<QuestionAnswers_Order_By>
   QuestionAnswerId?: Maybe<Order_By>
@@ -1032,6 +1102,8 @@ export enum Questions_Select_Column {
   /** column name */
   Id = 'Id',
   /** column name */
+  IsPublie = 'IsPublie',
+  /** column name */
   Libelle = 'Libelle',
   /** column name */
   QuestionAnswerId = 'QuestionAnswerId',
@@ -1042,6 +1114,7 @@ export enum Questions_Select_Column {
 /** input type for updating data in table "Questions" */
 export type Questions_Set_Input = {
   Id?: Maybe<Scalars['Int']>
+  IsPublie?: Maybe<Scalars['Boolean']>
   Libelle?: Maybe<Scalars['String']>
   QuestionAnswerId?: Maybe<Scalars['Int']>
   QuestionCategorieId?: Maybe<Scalars['Int']>
@@ -1112,6 +1185,8 @@ export enum Questions_Update_Column {
   /** column name */
   Id = 'Id',
   /** column name */
+  IsPublie = 'IsPublie',
+  /** column name */
   Libelle = 'Libelle',
   /** column name */
   QuestionAnswerId = 'QuestionAnswerId',
@@ -1164,6 +1239,16 @@ export type Questions_Variance_Order_By = {
   QuestionCategorieId?: Maybe<Order_By>
 }
 
+export type SampleInput = {
+  password: Scalars['String']
+  username: Scalars['String']
+}
+
+export type SampleOutput = {
+  __typename?: 'SampleOutput'
+  accessToken: Scalars['String']
+}
+
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
   _eq?: Maybe<Scalars['String']>
@@ -1183,9 +1268,24 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>
 }
 
+/** expression to compare columns of type json. All fields are combined with logical 'AND'. */
+export type Json_Comparison_Exp = {
+  _eq?: Maybe<Scalars['json']>
+  _gt?: Maybe<Scalars['json']>
+  _gte?: Maybe<Scalars['json']>
+  _in?: Maybe<Array<Scalars['json']>>
+  _is_null?: Maybe<Scalars['Boolean']>
+  _lt?: Maybe<Scalars['json']>
+  _lte?: Maybe<Scalars['json']>
+  _neq?: Maybe<Scalars['json']>
+  _nin?: Maybe<Array<Scalars['json']>>
+}
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root'
+  /** perform the action: "actionName" */
+  actionName?: Maybe<SampleOutput>
   /** delete data from the table: "QuestionAnswers" */
   delete_QuestionAnswers?: Maybe<QuestionAnswers_Mutation_Response>
   /** delete single row from the table: "QuestionAnswers" */
@@ -1234,6 +1334,11 @@ export type Mutation_Root = {
   update_Questions?: Maybe<Questions_Mutation_Response>
   /** update single row of the table: "Questions" */
   update_Questions_by_pk?: Maybe<Questions>
+}
+
+/** mutation root */
+export type Mutation_RootActionNameArgs = {
+  arg1: SampleInput
 }
 
 /** mutation root */
