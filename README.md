@@ -5,22 +5,10 @@ It run with Vuejs 3.
 
 ## Project setup
 
-```
-npm install
-```
+### Hasura
 
-### Compiles and hot-reloads for development
+**Apply migration:**
+> hasura migrate apply --endpoint http://localhost:9100 --admin-secret questionsecretkey
 
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+**Apply metadata:**
+> hasura metadata apply --endpoint http://localhost:9100 --admin-secret questionsecretkey

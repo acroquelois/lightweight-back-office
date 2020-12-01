@@ -1,7 +1,7 @@
 <template>
   <div
     v-html="require(`../../assets/icons/${props.name}.svg`)"
-    class="icon"
+    class="w-4 h-4"
     :style="`color: ${props.color};${props.clickable ? 'cursor:pointer' : ''}`"
     @click="$emit('on-click')"
   />
@@ -30,11 +30,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-.icon {
-  height: 1em;
-  width: 1em;
-  vertical-align: -0.125em;
-}
-</style>

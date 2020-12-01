@@ -14,7 +14,7 @@
         <span class="px-3">Question</span>
       </div>
       <div class="flex flex-1 justify-center">
-        <span class="px-3">Réponse</span>
+        <span class="px-3">Response</span>
       </div>
       <div class="flex flex-1 justify-center">
         <span class="px-3">Propositions</span>
@@ -31,7 +31,10 @@
           :key="question.Id"
         >
           <div class="p-1 flex flex-1 bg-gray-200 rounded-md">
-            <div class="flex flex-1 max-w-sm justify-center" style="max-width: 200px">
+            <div
+              class="flex flex-1 max-w-sm justify-center"
+              style="max-width: 200px"
+            >
               <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
             </div>
             <div class="flex flex-1">
@@ -52,7 +55,7 @@
                   name="edit-2"
                   color="#2563EB"
                   :clickable="true"
-                  @on-click="editQuestion"
+                  @on-click="editQuestion(question.Id)"
                 ></icon>
                 <icon
                   class="ml-2"
@@ -66,19 +69,20 @@
           </div>
         </div>
       </div>
+      <fab-button icon="plus" @on-click="goToAdding"></fab-button>
     </template>
-    <delete-modal
-      title="Delete"
-      message="Do you want delete this question ?"
-      :show-modal="showDeleteModal"
-      @close="showDeleteModal = false"
-      @accept="deleteQuestion"
-    ></delete-modal>
+    <!--    <delete-modal-->
+    <!--      ref="deleteModal"-->
+    <!--      title="Delete"-->
+    <!--      message="Do you want delete this question ?"-->
+    <!--      :show-modal="showDeleteModal"-->
+    <!--      @close="showDeleteModal = false"-->
+    <!--    ></delete-modal>-->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect, watch } from 'vue'
+import { defineComponent, ref, watchEffect } from 'vue'
 import { UnwrapRef } from 'vue-demi'
 import { useMutation, useQuery } from 'villus'
 import {
@@ -89,21 +93,19 @@ import {
 } from '@/generated/graphql'
 import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
-import DeleteModal from '@/components/modals/DeleteModal.vue'
-
-interface QuestionsResponse {
-  Questions: Query_Root['Questions']
-}
+import FabButton from '@/components/buttons/FabButton.vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: {
     Icon,
-    DeleteModal,
+    FabButton,
   },
   setup() {
+    const router = useRouter()
     const showDeleteModal = ref(false)
     const { data, execute: executeGet } = useQuery<
-      QuestionsResponse,
+      Query_Root,
       Query_RootQuestionsArgs
     >({
       query: GET_QUESTIONS,
@@ -111,9 +113,10 @@ export default defineComponent({
     })
     const questions = data
 
-    const editQuestion = () => {
-      console.log('ping icon')
+    const editQuestion = (id: number) => {
+      router.push({ name: 'Edit', params: { id: id } })
     }
+
     const { execute: executeDelete, isDone: doneDelete } = useMutation(
       DELETE_QUESTIONS,
     )
@@ -146,12 +149,18 @@ export default defineComponent({
       )
       return response
     }
+
+    const goToAdding = () => {
+      router.push({ name: 'Add' })
+    }
+
     return {
       questions,
       computePropositions,
       editQuestion,
       showDeleteModal,
       deleteQuestion,
+      goToAdding,
     }
   },
 })

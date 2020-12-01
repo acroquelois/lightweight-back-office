@@ -40,6 +40,7 @@
               Close
             </button>
             <button
+              ref="accept"
               class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
               type="button"
               style="transition: all 0.15s ease"
@@ -51,12 +52,15 @@
         </div>
       </div>
     </div>
-    <div v-if="props.showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+    <div
+      v-if="props.showModal"
+      class="opacity-25 fixed inset-0 z-40 bg-black"
+    ></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   props: {
@@ -75,7 +79,8 @@ export default defineComponent({
   },
   emits: ['close', 'accept'],
   setup(props) {
-    return { props }
+    const accept = ref(null)
+    return { props, accept }
   },
 })
 </script>

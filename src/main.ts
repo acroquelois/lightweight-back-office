@@ -23,7 +23,7 @@ function authPlugin({ opContext }: any) {
 }
 
 const clientOptions = {
-  url: 'http://localhost:9010/v1/graphql',
+  url: 'http://localhost:9100/v1/graphql',
   use: [authPlugin, ...defaultPlugins()],
 }
 
