@@ -1,16 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+
+//TODO: replace request(is deprecated)
 const request = require('request')
 
 const app = express()
 
 function getQuestionIdFromPayload(payload) {
   const {
-    payload: {
-      event: {
-        data: {
-          new: { Id: questionId },
-        },
+    event: {
+      data: {
+        new: { Id: questionId },
       },
     },
   } = payload
@@ -44,9 +44,8 @@ function buildBody(id) {
 }
 
 async function getQuestionByPk(questionId) {
-  // TODO: url env variable
   const clientServerOptions = {
-    uri: `http://localhost:9100/v1/graphql`,
+    uri: `${process.env.HASURA_SERV_URL}/v1/graphql`,
     body: buildBody(questionId),
     method: 'POST',
     headers: {
@@ -68,9 +67,8 @@ async function getQuestionByPk(questionId) {
   })
 }
 async function indexQuestion(questionId) {
-  // TODO: url env variable
   const clientServerOptions = {
-    uri: `http://localhost:9200/questions/_doc/`,
+    uri: `${process.env.ELASTIC_SERV_URL}/questions/_doc/`,
     body: await getQuestionByPk(questionId),
     method: 'POST',
     headers: {
@@ -95,12 +93,15 @@ app.post('/index-question', async function (req, res) {
     const questionId = getQuestionIdFromPayload(req.body)
     indexQuestion(questionId)
       .then(() => {
+        console.log(`[INFO]: Question ${questionId} was indexed`)
         res.status(201).json({ msg: 'Question indexation success' })
       })
       .catch(() => {
+        console.log(`[WARNING]: Indexation failed for question: ${questionId}`)
         res.status(500).json({ msg: 'Question indexation failed' })
       })
   } catch (e) {
+    console.log(`[ERROR]: Error in the payload`)
     res.status(500).json({ msg: 'Error in the payload' })
   }
 })
@@ -109,7 +110,8 @@ app.get('/', function (req, res) {
   res.send('Hello World - For Event Triggers, try a POST request?')
 })
 
-//TODO: env variable for port
-const server = app.listen(5001, function () {
-  console.log(`Server start on port: ${5001}`)
+const server = app.listen(process.env.PORT, function () {
+  console.log(`Server start on port: ${process.env.PORT}`)
+  console.log(`Hasura adress: ${process.env.HASURA_SERV_URL}`)
+  console.log(`Elastic adress: ${process.env.ELASTIC_SERV_URL}`)
 })
