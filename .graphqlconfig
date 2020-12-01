@@ -1,14 +1,14 @@
 {
   "name": "Untitled GraphQL Schema",
-  "schemaPath": "../src/graphql/schema.graphql",
+  "schemaPath": "./src/graphql/schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://localhost:9010/v1/graphql",
+        "url": "http://localhost:9100/v1/graphql",
         "headers": {
           "x-hasura-admin-secret": "questionsecretkey"
         },
-        "introspect": false
+        "introspect": true
       }
     }
   }
