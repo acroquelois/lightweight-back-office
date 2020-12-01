@@ -26,6 +26,7 @@ import { defineComponent } from 'vue'
 import {
   Query_Root,
   Query_RootQuestions_By_PkArgs,
+  QuestionAnswers_Insert_Input,
 } from '@/generated/graphql'
 import {
   GET_QUESTION_BY_ID,
@@ -58,9 +59,11 @@ export default defineComponent({
       const variable: InsertQuestion = {
         Id: question.value.Questions_by_pk?.Id,
         Libelle: question.value.Questions_by_pk?.Libelle,
+        IsPublie: question.value.Questions_by_pk?.IsPublie,
         QuestionCategorieId:
           question.value.Questions_by_pk?.QuestionCategorieId,
-        QuestionAnswer: question.value.Questions_by_pk?.QuestionAnswer,
+        QuestionAnswer: (question.value.Questions_by_pk
+          ?.QuestionAnswer as unknown) as QuestionAnswers_Insert_Input,
         QuestionPropositions:
           question.value.Questions_by_pk?.QuestionPropositions,
       }

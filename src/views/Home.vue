@@ -19,6 +19,9 @@
       <div class="flex flex-1 justify-center">
         <span class="px-3">Propositions</span>
       </div>
+      <div class="flex flex-1 justify-center">
+        <span class="px-3">IsPublie</span>
+      </div>
       <div class="flex flex-1 justify-center" style="max-width: 100px">
         <span class="px-3">Action</span>
       </div>
@@ -47,6 +50,14 @@
               <span class="px-3">{{
                 computePropositions(question.QuestionPropositions)
               }}</span>
+            </div>
+            <div class="flex flex-1 justify-center items-center">
+              <input
+                class="h-5 w-5"
+                type="checkbox"
+                v-model="question.IsPublie"
+                disabled
+              />
             </div>
             <div class="flex-1" style="max-width: 100px">
               <div class="flex justify-center">
@@ -165,5 +176,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped></style>

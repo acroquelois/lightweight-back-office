@@ -34,6 +34,15 @@
         Add
       </button>
     </div>
+    <div class="flex w-full ml-2">
+      <label class="font-semibold mt-1" for="isPublie">Publish :</label>
+      <input
+        class="h-8 w-8 ml-3"
+        type="checkbox"
+        id="isPublie"
+        v-model="props.question.IsPublie"
+      />
+    </div>
     <div class="flex w-full space-x-3">
       <div class="flex-1">
         <input
