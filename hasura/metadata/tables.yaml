@@ -21,6 +21,18 @@
     - name: QuestionCategory
       using:
         foreign_key_constraint_on: QuestionCategorieId
+  event_triggers:
+    - name: indexQuestion
+      definition:
+        enable_manual: false
+        update:
+          columns:
+            - IsPublie
+      retry_conf:
+        num_retries: 0
+        interval_sec: 10
+        timeout_sec: 60
+      webhook: "http://host.docker.internal:5001/lightweight-back-office/us-central1/indexquestion"
   array_relationships:
     - name: QuestionPropositions
       using:
