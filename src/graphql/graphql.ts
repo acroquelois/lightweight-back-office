@@ -3,8 +3,6 @@ import {
   Maybe,
   Query_Root,
   QuestionAnswers_Insert_Input,
-  QuestionPropositions,
-  QuestionPropositions_Insert_Input,
 } from '@/generated/graphql'
 
 export const GET_QUESTIONS = gql`
@@ -12,6 +10,7 @@ export const GET_QUESTIONS = gql`
     Questions {
       Id
       Libelle
+      IsPublie
       QuestionAnswer {
         Libelle
       }
@@ -30,6 +29,7 @@ export const GET_QUESTION_BY_ID = gql`
     Questions_by_pk(Id: $Id) {
       Id
       Libelle
+      IsPublie
       QuestionAnswer {
         Id
         Libelle
@@ -80,6 +80,7 @@ export const INSERT_QUESTION_CATEGORIE = gql`
 export type InsertQuestion = {
   Id?: Maybe<Number>
   Libelle?: Maybe<String>
+  IsPublie?: Maybe<Boolean>
   QuestionCategorieId?: Maybe<Number>
   QuestionAnswer?: QuestionAnswers_Insert_Input
   QuestionPropositions?: Array<QuestionAnswers_Insert_Input>
@@ -89,6 +90,7 @@ export const UPDATE_QUESTION = gql`
   mutation insertQuestion(
     $Id: Int!
     $Libelle: String
+    $IsPublie: Boolean!
     $QuestionCategorieId: Int!
     $QuestionAnswer: QuestionAnswers_insert_input!
     $QuestionPropositions: [QuestionPropositions_insert_input!]!
@@ -97,6 +99,7 @@ export const UPDATE_QUESTION = gql`
       object: {
         Id: $Id
         Libelle: $Libelle
+        IsPublie: $IsPublie
         QuestionCategorieId: $QuestionCategorieId
         QuestionAnswer: {
           data: $QuestionAnswer
@@ -113,7 +116,10 @@ export const UPDATE_QUESTION = gql`
           }
         }
       }
-      on_conflict: { constraint: PK_Questions, update_columns: [Libelle, QuestionCategorieId] }
+      on_conflict: {
+        constraint: PK_Questions
+        update_columns: [Libelle, IsPublie, QuestionCategorieId]
+      }
     ) {
       Id
     }
