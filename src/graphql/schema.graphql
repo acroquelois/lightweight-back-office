@@ -1,1669 +1,1616 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
 schema {
-  query: query_root
-  mutation: mutation_root
-  subscription: subscription_root
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
 }
 
-# expression to compare columns of type Int. All fields are combined with logical 'AND'.
-input Int_comparison_exp {
-  _eq: Int
-  _gt: Int
-  _gte: Int
-  _in: [Int!]
-  _is_null: Boolean
-  _lt: Int
-  _lte: Int
-  _neq: Int
-  _nin: [Int!]
-}
-
-# mutation root
-type mutation_root {
-  # delete data from the table: "QuestionAnswers"
-  delete_QuestionAnswers(
-    # filter the rows which have to be deleted
-    where: QuestionAnswers_bool_exp!
-  ): QuestionAnswers_mutation_response
-
-  # delete single row from the table: "QuestionAnswers"
-  delete_QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
-
-  # delete data from the table: "QuestionCategories"
-  delete_QuestionCategories(
-    # filter the rows which have to be deleted
-    where: QuestionCategories_bool_exp!
-  ): QuestionCategories_mutation_response
-
-  # delete single row from the table: "QuestionCategories"
-  delete_QuestionCategories_by_pk(Id: Int!): QuestionCategories
-
-  # delete data from the table: "QuestionPropositions"
-  delete_QuestionPropositions(
-    # filter the rows which have to be deleted
-    where: QuestionPropositions_bool_exp!
-  ): QuestionPropositions_mutation_response
-
-  # delete single row from the table: "QuestionPropositions"
-  delete_QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
-
-  # delete data from the table: "Questions"
-  delete_Questions(
-    # filter the rows which have to be deleted
-    where: Questions_bool_exp!
-  ): Questions_mutation_response
-
-  # delete single row from the table: "Questions"
-  delete_Questions_by_pk(Id: Int!): Questions
-
-  # insert data into the table: "QuestionAnswers"
-  insert_QuestionAnswers(
-    # the rows to be inserted
-    objects: [QuestionAnswers_insert_input!]!
-
-    # on conflict condition
-    on_conflict: QuestionAnswers_on_conflict
-  ): QuestionAnswers_mutation_response
-
-  # insert a single row into the table: "QuestionAnswers"
-  insert_QuestionAnswers_one(
-    # the row to be inserted
-    object: QuestionAnswers_insert_input!
-
-    # on conflict condition
-    on_conflict: QuestionAnswers_on_conflict
-  ): QuestionAnswers
-
-  # insert data into the table: "QuestionCategories"
-  insert_QuestionCategories(
-    # the rows to be inserted
-    objects: [QuestionCategories_insert_input!]!
-
-    # on conflict condition
-    on_conflict: QuestionCategories_on_conflict
-  ): QuestionCategories_mutation_response
-
-  # insert a single row into the table: "QuestionCategories"
-  insert_QuestionCategories_one(
-    # the row to be inserted
-    object: QuestionCategories_insert_input!
-
-    # on conflict condition
-    on_conflict: QuestionCategories_on_conflict
-  ): QuestionCategories
-
-  # insert data into the table: "QuestionPropositions"
-  insert_QuestionPropositions(
-    # the rows to be inserted
-    objects: [QuestionPropositions_insert_input!]!
-
-    # on conflict condition
-    on_conflict: QuestionPropositions_on_conflict
-  ): QuestionPropositions_mutation_response
-
-  # insert a single row into the table: "QuestionPropositions"
-  insert_QuestionPropositions_one(
-    # the row to be inserted
-    object: QuestionPropositions_insert_input!
-
-    # on conflict condition
-    on_conflict: QuestionPropositions_on_conflict
-  ): QuestionPropositions
-
-  # insert data into the table: "Questions"
-  insert_Questions(
-    # the rows to be inserted
-    objects: [Questions_insert_input!]!
-
-    # on conflict condition
-    on_conflict: Questions_on_conflict
-  ): Questions_mutation_response
-
-  # insert a single row into the table: "Questions"
-  insert_Questions_one(
-    # the row to be inserted
-    object: Questions_insert_input!
-
-    # on conflict condition
-    on_conflict: Questions_on_conflict
-  ): Questions
-
-  # update data of the table: "QuestionAnswers"
-  update_QuestionAnswers(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionAnswers_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionAnswers_set_input
-
-    # filter the rows which have to be updated
-    where: QuestionAnswers_bool_exp!
-  ): QuestionAnswers_mutation_response
-
-  # update single row of the table: "QuestionAnswers"
-  update_QuestionAnswers_by_pk(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionAnswers_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionAnswers_set_input
-    pk_columns: QuestionAnswers_pk_columns_input!
-  ): QuestionAnswers
-
-  # update data of the table: "QuestionCategories"
-  update_QuestionCategories(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionCategories_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionCategories_set_input
-
-    # filter the rows which have to be updated
-    where: QuestionCategories_bool_exp!
-  ): QuestionCategories_mutation_response
-
-  # update single row of the table: "QuestionCategories"
-  update_QuestionCategories_by_pk(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionCategories_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionCategories_set_input
-    pk_columns: QuestionCategories_pk_columns_input!
-  ): QuestionCategories
-
-  # update data of the table: "QuestionPropositions"
-  update_QuestionPropositions(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionPropositions_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionPropositions_set_input
-
-    # filter the rows which have to be updated
-    where: QuestionPropositions_bool_exp!
-  ): QuestionPropositions_mutation_response
-
-  # update single row of the table: "QuestionPropositions"
-  update_QuestionPropositions_by_pk(
-    # increments the integer columns with given value of the filtered values
-    _inc: QuestionPropositions_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: QuestionPropositions_set_input
-    pk_columns: QuestionPropositions_pk_columns_input!
-  ): QuestionPropositions
-
-  # update data of the table: "Questions"
-  update_Questions(
-    # increments the integer columns with given value of the filtered values
-    _inc: Questions_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: Questions_set_input
-
-    # filter the rows which have to be updated
-    where: Questions_bool_exp!
-  ): Questions_mutation_response
-
-  # update single row of the table: "Questions"
-  update_Questions_by_pk(
-    # increments the integer columns with given value of the filtered values
-    _inc: Questions_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: Questions_set_input
-    pk_columns: Questions_pk_columns_input!
-  ): Questions
-}
-
-# column ordering options
-enum order_by {
-  # in the ascending order, nulls last
-  asc
-
-  # in the ascending order, nulls first
-  asc_nulls_first
-
-  # in the ascending order, nulls last
-  asc_nulls_last
-
-  # in the descending order, nulls first
-  desc
-
-  # in the descending order, nulls first
-  desc_nulls_first
-
-  # in the descending order, nulls last
-  desc_nulls_last
-}
-
-# query root
-type query_root {
-  # fetch data from the table: "QuestionAnswers"
-  QuestionAnswers(
-    # distinct select on columns
-    distinct_on: [QuestionAnswers_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionAnswers_order_by!]
-
-    # filter the rows returned
-    where: QuestionAnswers_bool_exp
-  ): [QuestionAnswers!]!
-
-  # fetch aggregated fields from the table: "QuestionAnswers"
-  QuestionAnswers_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionAnswers_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionAnswers_order_by!]
-
-    # filter the rows returned
-    where: QuestionAnswers_bool_exp
-  ): QuestionAnswers_aggregate!
-
-  # fetch data from the table: "QuestionAnswers" using primary key columns
-  QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
-
-  # fetch data from the table: "QuestionCategories"
-  QuestionCategories(
-    # distinct select on columns
-    distinct_on: [QuestionCategories_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionCategories_order_by!]
-
-    # filter the rows returned
-    where: QuestionCategories_bool_exp
-  ): [QuestionCategories!]!
-
-  # fetch aggregated fields from the table: "QuestionCategories"
-  QuestionCategories_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionCategories_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionCategories_order_by!]
-
-    # filter the rows returned
-    where: QuestionCategories_bool_exp
-  ): QuestionCategories_aggregate!
-
-  # fetch data from the table: "QuestionCategories" using primary key columns
-  QuestionCategories_by_pk(Id: Int!): QuestionCategories
-
-  # fetch data from the table: "QuestionPropositions"
-  QuestionPropositions(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): [QuestionPropositions!]!
-
-  # fetch aggregated fields from the table: "QuestionPropositions"
-  QuestionPropositions_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): QuestionPropositions_aggregate!
-
-  # fetch data from the table: "QuestionPropositions" using primary key columns
-  QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
-
-  # fetch data from the table: "Questions"
-  Questions(
-    # distinct select on columns
-    distinct_on: [Questions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [Questions_order_by!]
-
-    # filter the rows returned
-    where: Questions_bool_exp
-  ): [Questions!]!
-
-  # fetch aggregated fields from the table: "Questions"
-  Questions_aggregate(
-    # distinct select on columns
-    distinct_on: [Questions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [Questions_order_by!]
-
-    # filter the rows returned
-    where: Questions_bool_exp
-  ): Questions_aggregate!
-
-  # fetch data from the table: "Questions" using primary key columns
-  Questions_by_pk(Id: Int!): Questions
-}
-
-# columns and relationships of "QuestionAnswers"
+"columns and relationships of \"QuestionAnswers\""
 type QuestionAnswers {
-  Id: Int!
-  Libelle: String
+    Id: Int!
+    Libelle: String
+    "An array relationship"
+    Questions(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): [Questions!]!
+    "An aggregated array relationship"
+    Questions_aggregate(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): Questions_aggregate!
 }
 
-# aggregated selection of "QuestionAnswers"
+"aggregated selection of \"QuestionAnswers\""
 type QuestionAnswers_aggregate {
-  aggregate: QuestionAnswers_aggregate_fields
-  nodes: [QuestionAnswers!]!
+    aggregate: QuestionAnswers_aggregate_fields
+    nodes: [QuestionAnswers!]!
 }
 
-# aggregate fields of "QuestionAnswers"
+"aggregate fields of \"QuestionAnswers\""
 type QuestionAnswers_aggregate_fields {
-  avg: QuestionAnswers_avg_fields
-  count(columns: [QuestionAnswers_select_column!], distinct: Boolean): Int
-  max: QuestionAnswers_max_fields
-  min: QuestionAnswers_min_fields
-  stddev: QuestionAnswers_stddev_fields
-  stddev_pop: QuestionAnswers_stddev_pop_fields
-  stddev_samp: QuestionAnswers_stddev_samp_fields
-  sum: QuestionAnswers_sum_fields
-  var_pop: QuestionAnswers_var_pop_fields
-  var_samp: QuestionAnswers_var_samp_fields
-  variance: QuestionAnswers_variance_fields
+    avg: QuestionAnswers_avg_fields
+    count(columns: [QuestionAnswers_select_column!], distinct: Boolean): Int
+    max: QuestionAnswers_max_fields
+    min: QuestionAnswers_min_fields
+    stddev: QuestionAnswers_stddev_fields
+    stddev_pop: QuestionAnswers_stddev_pop_fields
+    stddev_samp: QuestionAnswers_stddev_samp_fields
+    sum: QuestionAnswers_sum_fields
+    var_pop: QuestionAnswers_var_pop_fields
+    var_samp: QuestionAnswers_var_samp_fields
+    variance: QuestionAnswers_variance_fields
 }
 
-# order by aggregate values of table "QuestionAnswers"
-input QuestionAnswers_aggregate_order_by {
-  avg: QuestionAnswers_avg_order_by
-  count: order_by
-  max: QuestionAnswers_max_order_by
-  min: QuestionAnswers_min_order_by
-  stddev: QuestionAnswers_stddev_order_by
-  stddev_pop: QuestionAnswers_stddev_pop_order_by
-  stddev_samp: QuestionAnswers_stddev_samp_order_by
-  sum: QuestionAnswers_sum_order_by
-  var_pop: QuestionAnswers_var_pop_order_by
-  var_samp: QuestionAnswers_var_samp_order_by
-  variance: QuestionAnswers_variance_order_by
-}
-
-# input type for inserting array relation for remote table "QuestionAnswers"
-input QuestionAnswers_arr_rel_insert_input {
-  data: [QuestionAnswers_insert_input!]!
-  on_conflict: QuestionAnswers_on_conflict
-}
-
-# aggregate avg on columns
+"aggregate avg on columns"
 type QuestionAnswers_avg_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by avg() on columns of table "QuestionAnswers"
-input QuestionAnswers_avg_order_by {
-  Id: order_by
-}
-
-# Boolean expression to filter rows from the table "QuestionAnswers". All fields are combined with a logical 'AND'.
-input QuestionAnswers_bool_exp {
-  Id: Int_comparison_exp
-  Libelle: String_comparison_exp
-  _and: [QuestionAnswers_bool_exp]
-  _not: QuestionAnswers_bool_exp
-  _or: [QuestionAnswers_bool_exp]
-}
-
-# unique or primary key constraints on table "QuestionAnswers"
-enum QuestionAnswers_constraint {
-  # unique or primary key constraint
-  PK_QuestionAnswers
-}
-
-# input type for incrementing integer column in table "QuestionAnswers"
-input QuestionAnswers_inc_input {
-  Id: Int
-}
-
-# input type for inserting data into table "QuestionAnswers"
-input QuestionAnswers_insert_input {
-  Id: Int
-  Libelle: String
-}
-
-# aggregate max on columns
+"aggregate max on columns"
 type QuestionAnswers_max_fields {
-  Id: Int
-  Libelle: String
+    Id: Int
+    Libelle: String
 }
 
-# order by max() on columns of table "QuestionAnswers"
-input QuestionAnswers_max_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# aggregate min on columns
+"aggregate min on columns"
 type QuestionAnswers_min_fields {
-  Id: Int
-  Libelle: String
+    Id: Int
+    Libelle: String
 }
 
-# order by min() on columns of table "QuestionAnswers"
-input QuestionAnswers_min_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# response of any mutation on the table "QuestionAnswers"
+"response of any mutation on the table \"QuestionAnswers\""
 type QuestionAnswers_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [QuestionAnswers!]!
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [QuestionAnswers!]!
 }
 
-# input type for inserting object relation for remote table "QuestionAnswers"
-input QuestionAnswers_obj_rel_insert_input {
-  data: QuestionAnswers_insert_input!
-  on_conflict: QuestionAnswers_on_conflict
-}
-
-# on conflict condition type for table "QuestionAnswers"
-input QuestionAnswers_on_conflict {
-  constraint: QuestionAnswers_constraint!
-  update_columns: [QuestionAnswers_update_column!]!
-  where: QuestionAnswers_bool_exp
-}
-
-# ordering options when selecting data from "QuestionAnswers"
-input QuestionAnswers_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# primary key columns input for table: "QuestionAnswers"
-input QuestionAnswers_pk_columns_input {
-  Id: Int!
-}
-
-# select columns of table "QuestionAnswers"
-enum QuestionAnswers_select_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-}
-
-# input type for updating data in table "QuestionAnswers"
-input QuestionAnswers_set_input {
-  Id: Int
-  Libelle: String
-}
-
-# aggregate stddev on columns
+"aggregate stddev on columns"
 type QuestionAnswers_stddev_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev() on columns of table "QuestionAnswers"
-input QuestionAnswers_stddev_order_by {
-  Id: order_by
-}
-
-# aggregate stddev_pop on columns
+"aggregate stddev_pop on columns"
 type QuestionAnswers_stddev_pop_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev_pop() on columns of table "QuestionAnswers"
-input QuestionAnswers_stddev_pop_order_by {
-  Id: order_by
-}
-
-# aggregate stddev_samp on columns
+"aggregate stddev_samp on columns"
 type QuestionAnswers_stddev_samp_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev_samp() on columns of table "QuestionAnswers"
-input QuestionAnswers_stddev_samp_order_by {
-  Id: order_by
-}
-
-# aggregate sum on columns
+"aggregate sum on columns"
 type QuestionAnswers_sum_fields {
-  Id: Int
+    Id: Int
 }
 
-# order by sum() on columns of table "QuestionAnswers"
-input QuestionAnswers_sum_order_by {
-  Id: order_by
-}
-
-# update columns of table "QuestionAnswers"
-enum QuestionAnswers_update_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-}
-
-# aggregate var_pop on columns
+"aggregate var_pop on columns"
 type QuestionAnswers_var_pop_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by var_pop() on columns of table "QuestionAnswers"
-input QuestionAnswers_var_pop_order_by {
-  Id: order_by
-}
-
-# aggregate var_samp on columns
+"aggregate var_samp on columns"
 type QuestionAnswers_var_samp_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by var_samp() on columns of table "QuestionAnswers"
-input QuestionAnswers_var_samp_order_by {
-  Id: order_by
-}
-
-# aggregate variance on columns
+"aggregate variance on columns"
 type QuestionAnswers_variance_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by variance() on columns of table "QuestionAnswers"
-input QuestionAnswers_variance_order_by {
-  Id: order_by
-}
-
-# columns and relationships of "QuestionCategories"
+"columns and relationships of \"QuestionCategories\""
 type QuestionCategories {
-  Id: Int!
-  Libelle: String
+    Id: Int!
+    Libelle: String
+    "An array relationship"
+    Questions(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): [Questions!]!
+    "An aggregated array relationship"
+    Questions_aggregate(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): Questions_aggregate!
 }
 
-# aggregated selection of "QuestionCategories"
+"aggregated selection of \"QuestionCategories\""
 type QuestionCategories_aggregate {
-  aggregate: QuestionCategories_aggregate_fields
-  nodes: [QuestionCategories!]!
+    aggregate: QuestionCategories_aggregate_fields
+    nodes: [QuestionCategories!]!
 }
 
-# aggregate fields of "QuestionCategories"
+"aggregate fields of \"QuestionCategories\""
 type QuestionCategories_aggregate_fields {
-  avg: QuestionCategories_avg_fields
-  count(columns: [QuestionCategories_select_column!], distinct: Boolean): Int
-  max: QuestionCategories_max_fields
-  min: QuestionCategories_min_fields
-  stddev: QuestionCategories_stddev_fields
-  stddev_pop: QuestionCategories_stddev_pop_fields
-  stddev_samp: QuestionCategories_stddev_samp_fields
-  sum: QuestionCategories_sum_fields
-  var_pop: QuestionCategories_var_pop_fields
-  var_samp: QuestionCategories_var_samp_fields
-  variance: QuestionCategories_variance_fields
+    avg: QuestionCategories_avg_fields
+    count(columns: [QuestionCategories_select_column!], distinct: Boolean): Int
+    max: QuestionCategories_max_fields
+    min: QuestionCategories_min_fields
+    stddev: QuestionCategories_stddev_fields
+    stddev_pop: QuestionCategories_stddev_pop_fields
+    stddev_samp: QuestionCategories_stddev_samp_fields
+    sum: QuestionCategories_sum_fields
+    var_pop: QuestionCategories_var_pop_fields
+    var_samp: QuestionCategories_var_samp_fields
+    variance: QuestionCategories_variance_fields
 }
 
-# order by aggregate values of table "QuestionCategories"
-input QuestionCategories_aggregate_order_by {
-  avg: QuestionCategories_avg_order_by
-  count: order_by
-  max: QuestionCategories_max_order_by
-  min: QuestionCategories_min_order_by
-  stddev: QuestionCategories_stddev_order_by
-  stddev_pop: QuestionCategories_stddev_pop_order_by
-  stddev_samp: QuestionCategories_stddev_samp_order_by
-  sum: QuestionCategories_sum_order_by
-  var_pop: QuestionCategories_var_pop_order_by
-  var_samp: QuestionCategories_var_samp_order_by
-  variance: QuestionCategories_variance_order_by
-}
-
-# input type for inserting array relation for remote table "QuestionCategories"
-input QuestionCategories_arr_rel_insert_input {
-  data: [QuestionCategories_insert_input!]!
-  on_conflict: QuestionCategories_on_conflict
-}
-
-# aggregate avg on columns
+"aggregate avg on columns"
 type QuestionCategories_avg_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by avg() on columns of table "QuestionCategories"
-input QuestionCategories_avg_order_by {
-  Id: order_by
-}
-
-# Boolean expression to filter rows from the table "QuestionCategories". All fields are combined with a logical 'AND'.
-input QuestionCategories_bool_exp {
-  Id: Int_comparison_exp
-  Libelle: String_comparison_exp
-  _and: [QuestionCategories_bool_exp]
-  _not: QuestionCategories_bool_exp
-  _or: [QuestionCategories_bool_exp]
-}
-
-# unique or primary key constraints on table "QuestionCategories"
-enum QuestionCategories_constraint {
-  # unique or primary key constraint
-  PK_QuestionCategories
-}
-
-# input type for incrementing integer column in table "QuestionCategories"
-input QuestionCategories_inc_input {
-  Id: Int
-}
-
-# input type for inserting data into table "QuestionCategories"
-input QuestionCategories_insert_input {
-  Id: Int
-  Libelle: String
-}
-
-# aggregate max on columns
+"aggregate max on columns"
 type QuestionCategories_max_fields {
-  Id: Int
-  Libelle: String
+    Id: Int
+    Libelle: String
 }
 
-# order by max() on columns of table "QuestionCategories"
-input QuestionCategories_max_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# aggregate min on columns
+"aggregate min on columns"
 type QuestionCategories_min_fields {
-  Id: Int
-  Libelle: String
+    Id: Int
+    Libelle: String
 }
 
-# order by min() on columns of table "QuestionCategories"
-input QuestionCategories_min_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# response of any mutation on the table "QuestionCategories"
+"response of any mutation on the table \"QuestionCategories\""
 type QuestionCategories_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [QuestionCategories!]!
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [QuestionCategories!]!
 }
 
-# input type for inserting object relation for remote table "QuestionCategories"
-input QuestionCategories_obj_rel_insert_input {
-  data: QuestionCategories_insert_input!
-  on_conflict: QuestionCategories_on_conflict
-}
-
-# on conflict condition type for table "QuestionCategories"
-input QuestionCategories_on_conflict {
-  constraint: QuestionCategories_constraint!
-  update_columns: [QuestionCategories_update_column!]!
-  where: QuestionCategories_bool_exp
-}
-
-# ordering options when selecting data from "QuestionCategories"
-input QuestionCategories_order_by {
-  Id: order_by
-  Libelle: order_by
-}
-
-# primary key columns input for table: "QuestionCategories"
-input QuestionCategories_pk_columns_input {
-  Id: Int!
-}
-
-# select columns of table "QuestionCategories"
-enum QuestionCategories_select_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-}
-
-# input type for updating data in table "QuestionCategories"
-input QuestionCategories_set_input {
-  Id: Int
-  Libelle: String
-}
-
-# aggregate stddev on columns
+"aggregate stddev on columns"
 type QuestionCategories_stddev_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev() on columns of table "QuestionCategories"
-input QuestionCategories_stddev_order_by {
-  Id: order_by
-}
-
-# aggregate stddev_pop on columns
+"aggregate stddev_pop on columns"
 type QuestionCategories_stddev_pop_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev_pop() on columns of table "QuestionCategories"
-input QuestionCategories_stddev_pop_order_by {
-  Id: order_by
-}
-
-# aggregate stddev_samp on columns
+"aggregate stddev_samp on columns"
 type QuestionCategories_stddev_samp_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by stddev_samp() on columns of table "QuestionCategories"
-input QuestionCategories_stddev_samp_order_by {
-  Id: order_by
-}
-
-# aggregate sum on columns
+"aggregate sum on columns"
 type QuestionCategories_sum_fields {
-  Id: Int
+    Id: Int
 }
 
-# order by sum() on columns of table "QuestionCategories"
-input QuestionCategories_sum_order_by {
-  Id: order_by
-}
-
-# update columns of table "QuestionCategories"
-enum QuestionCategories_update_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-}
-
-# aggregate var_pop on columns
+"aggregate var_pop on columns"
 type QuestionCategories_var_pop_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by var_pop() on columns of table "QuestionCategories"
-input QuestionCategories_var_pop_order_by {
-  Id: order_by
-}
-
-# aggregate var_samp on columns
+"aggregate var_samp on columns"
 type QuestionCategories_var_samp_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by var_samp() on columns of table "QuestionCategories"
-input QuestionCategories_var_samp_order_by {
-  Id: order_by
-}
-
-# aggregate variance on columns
+"aggregate variance on columns"
 type QuestionCategories_variance_fields {
-  Id: Float
+    Id: Float
 }
 
-# order by variance() on columns of table "QuestionCategories"
-input QuestionCategories_variance_order_by {
-  Id: order_by
-}
-
-# columns and relationships of "QuestionPropositions"
+"columns and relationships of \"QuestionPropositions\""
 type QuestionPropositions {
-  Id: Int!
-  Libelle: String
-
-  # An object relationship
-  Question: Questions!
-  QuestionId: Int!
+    Id: Int!
+    Libelle: String
+    "An object relationship"
+    Question: Questions!
+    QuestionId: Int!
 }
 
-# aggregated selection of "QuestionPropositions"
+"aggregated selection of \"QuestionPropositions\""
 type QuestionPropositions_aggregate {
-  aggregate: QuestionPropositions_aggregate_fields
-  nodes: [QuestionPropositions!]!
+    aggregate: QuestionPropositions_aggregate_fields
+    nodes: [QuestionPropositions!]!
 }
 
-# aggregate fields of "QuestionPropositions"
+"aggregate fields of \"QuestionPropositions\""
 type QuestionPropositions_aggregate_fields {
-  avg: QuestionPropositions_avg_fields
-  count(columns: [QuestionPropositions_select_column!], distinct: Boolean): Int
-  max: QuestionPropositions_max_fields
-  min: QuestionPropositions_min_fields
-  stddev: QuestionPropositions_stddev_fields
-  stddev_pop: QuestionPropositions_stddev_pop_fields
-  stddev_samp: QuestionPropositions_stddev_samp_fields
-  sum: QuestionPropositions_sum_fields
-  var_pop: QuestionPropositions_var_pop_fields
-  var_samp: QuestionPropositions_var_samp_fields
-  variance: QuestionPropositions_variance_fields
+    avg: QuestionPropositions_avg_fields
+    count(columns: [QuestionPropositions_select_column!], distinct: Boolean): Int
+    max: QuestionPropositions_max_fields
+    min: QuestionPropositions_min_fields
+    stddev: QuestionPropositions_stddev_fields
+    stddev_pop: QuestionPropositions_stddev_pop_fields
+    stddev_samp: QuestionPropositions_stddev_samp_fields
+    sum: QuestionPropositions_sum_fields
+    var_pop: QuestionPropositions_var_pop_fields
+    var_samp: QuestionPropositions_var_samp_fields
+    variance: QuestionPropositions_variance_fields
 }
 
-# order by aggregate values of table "QuestionPropositions"
-input QuestionPropositions_aggregate_order_by {
-  avg: QuestionPropositions_avg_order_by
-  count: order_by
-  max: QuestionPropositions_max_order_by
-  min: QuestionPropositions_min_order_by
-  stddev: QuestionPropositions_stddev_order_by
-  stddev_pop: QuestionPropositions_stddev_pop_order_by
-  stddev_samp: QuestionPropositions_stddev_samp_order_by
-  sum: QuestionPropositions_sum_order_by
-  var_pop: QuestionPropositions_var_pop_order_by
-  var_samp: QuestionPropositions_var_samp_order_by
-  variance: QuestionPropositions_variance_order_by
-}
-
-# input type for inserting array relation for remote table "QuestionPropositions"
-input QuestionPropositions_arr_rel_insert_input {
-  data: [QuestionPropositions_insert_input!]!
-  on_conflict: QuestionPropositions_on_conflict
-}
-
-# aggregate avg on columns
+"aggregate avg on columns"
 type QuestionPropositions_avg_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by avg() on columns of table "QuestionPropositions"
-input QuestionPropositions_avg_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# Boolean expression to filter rows from the table "QuestionPropositions". All fields are combined with a logical 'AND'.
-input QuestionPropositions_bool_exp {
-  Id: Int_comparison_exp
-  Libelle: String_comparison_exp
-  Question: Questions_bool_exp
-  QuestionId: Int_comparison_exp
-  _and: [QuestionPropositions_bool_exp]
-  _not: QuestionPropositions_bool_exp
-  _or: [QuestionPropositions_bool_exp]
-}
-
-# unique or primary key constraints on table "QuestionPropositions"
-enum QuestionPropositions_constraint {
-  # unique or primary key constraint
-  PK_QuestionPropositions
-}
-
-# input type for incrementing integer column in table "QuestionPropositions"
-input QuestionPropositions_inc_input {
-  Id: Int
-  QuestionId: Int
-}
-
-# input type for inserting data into table "QuestionPropositions"
-input QuestionPropositions_insert_input {
-  Id: Int
-  Libelle: String
-  Question: Questions_obj_rel_insert_input
-  QuestionId: Int
-}
-
-# aggregate max on columns
+"aggregate max on columns"
 type QuestionPropositions_max_fields {
-  Id: Int
-  Libelle: String
-  QuestionId: Int
+    Id: Int
+    Libelle: String
+    QuestionId: Int
 }
 
-# order by max() on columns of table "QuestionPropositions"
-input QuestionPropositions_max_order_by {
-  Id: order_by
-  Libelle: order_by
-  QuestionId: order_by
-}
-
-# aggregate min on columns
+"aggregate min on columns"
 type QuestionPropositions_min_fields {
-  Id: Int
-  Libelle: String
-  QuestionId: Int
+    Id: Int
+    Libelle: String
+    QuestionId: Int
 }
 
-# order by min() on columns of table "QuestionPropositions"
-input QuestionPropositions_min_order_by {
-  Id: order_by
-  Libelle: order_by
-  QuestionId: order_by
-}
-
-# response of any mutation on the table "QuestionPropositions"
+"response of any mutation on the table \"QuestionPropositions\""
 type QuestionPropositions_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [QuestionPropositions!]!
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [QuestionPropositions!]!
 }
 
-# input type for inserting object relation for remote table "QuestionPropositions"
-input QuestionPropositions_obj_rel_insert_input {
-  data: QuestionPropositions_insert_input!
-  on_conflict: QuestionPropositions_on_conflict
-}
-
-# on conflict condition type for table "QuestionPropositions"
-input QuestionPropositions_on_conflict {
-  constraint: QuestionPropositions_constraint!
-  update_columns: [QuestionPropositions_update_column!]!
-  where: QuestionPropositions_bool_exp
-}
-
-# ordering options when selecting data from "QuestionPropositions"
-input QuestionPropositions_order_by {
-  Id: order_by
-  Libelle: order_by
-  Question: Questions_order_by
-  QuestionId: order_by
-}
-
-# primary key columns input for table: "QuestionPropositions"
-input QuestionPropositions_pk_columns_input {
-  Id: Int!
-}
-
-# select columns of table "QuestionPropositions"
-enum QuestionPropositions_select_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-
-  # column name
-  QuestionId
-}
-
-# input type for updating data in table "QuestionPropositions"
-input QuestionPropositions_set_input {
-  Id: Int
-  Libelle: String
-  QuestionId: Int
-}
-
-# aggregate stddev on columns
+"aggregate stddev on columns"
 type QuestionPropositions_stddev_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by stddev() on columns of table "QuestionPropositions"
-input QuestionPropositions_stddev_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# aggregate stddev_pop on columns
+"aggregate stddev_pop on columns"
 type QuestionPropositions_stddev_pop_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by stddev_pop() on columns of table "QuestionPropositions"
-input QuestionPropositions_stddev_pop_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# aggregate stddev_samp on columns
+"aggregate stddev_samp on columns"
 type QuestionPropositions_stddev_samp_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by stddev_samp() on columns of table "QuestionPropositions"
-input QuestionPropositions_stddev_samp_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# aggregate sum on columns
+"aggregate sum on columns"
 type QuestionPropositions_sum_fields {
-  Id: Int
-  QuestionId: Int
+    Id: Int
+    QuestionId: Int
 }
 
-# order by sum() on columns of table "QuestionPropositions"
-input QuestionPropositions_sum_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# update columns of table "QuestionPropositions"
-enum QuestionPropositions_update_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-
-  # column name
-  QuestionId
-}
-
-# aggregate var_pop on columns
+"aggregate var_pop on columns"
 type QuestionPropositions_var_pop_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by var_pop() on columns of table "QuestionPropositions"
-input QuestionPropositions_var_pop_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# aggregate var_samp on columns
+"aggregate var_samp on columns"
 type QuestionPropositions_var_samp_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by var_samp() on columns of table "QuestionPropositions"
-input QuestionPropositions_var_samp_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# aggregate variance on columns
+"aggregate variance on columns"
 type QuestionPropositions_variance_fields {
-  Id: Float
-  QuestionId: Float
+    Id: Float
+    QuestionId: Float
 }
 
-# order by variance() on columns of table "QuestionPropositions"
-input QuestionPropositions_variance_order_by {
-  Id: order_by
-  QuestionId: order_by
-}
-
-# columns and relationships of "Questions"
+"columns and relationships of \"Questions\""
 type Questions {
-  Id: Int!
-  Libelle: String
-
-  # An object relationship
-  QuestionAnswer: QuestionAnswers!
-  QuestionAnswerId: Int!
-  QuestionCategorieId: Int!
-
-  # An object relationship
-  QuestionCategory: QuestionCategories!
-
-  # An array relationship
-  QuestionPropositions(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): [QuestionPropositions!]!
-
-  # An aggregated array relationship
-  QuestionPropositions_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): QuestionPropositions_aggregate!
+    Id: Int!
+    IsPublie: Boolean
+    Libelle: String
+    "An object relationship"
+    QuestionAnswer: QuestionAnswers!
+    QuestionAnswerId: Int!
+    QuestionCategorieId: Int!
+    "An object relationship"
+    QuestionCategory: QuestionCategories!
+    "An array relationship"
+    QuestionPropositions(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): [QuestionPropositions!]!
+    "An aggregated array relationship"
+    QuestionPropositions_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): QuestionPropositions_aggregate!
 }
 
-# aggregated selection of "Questions"
+"aggregated selection of \"Questions\""
 type Questions_aggregate {
-  aggregate: Questions_aggregate_fields
-  nodes: [Questions!]!
+    aggregate: Questions_aggregate_fields
+    nodes: [Questions!]!
 }
 
-# aggregate fields of "Questions"
+"aggregate fields of \"Questions\""
 type Questions_aggregate_fields {
-  avg: Questions_avg_fields
-  count(columns: [Questions_select_column!], distinct: Boolean): Int
-  max: Questions_max_fields
-  min: Questions_min_fields
-  stddev: Questions_stddev_fields
-  stddev_pop: Questions_stddev_pop_fields
-  stddev_samp: Questions_stddev_samp_fields
-  sum: Questions_sum_fields
-  var_pop: Questions_var_pop_fields
-  var_samp: Questions_var_samp_fields
-  variance: Questions_variance_fields
+    avg: Questions_avg_fields
+    count(columns: [Questions_select_column!], distinct: Boolean): Int
+    max: Questions_max_fields
+    min: Questions_min_fields
+    stddev: Questions_stddev_fields
+    stddev_pop: Questions_stddev_pop_fields
+    stddev_samp: Questions_stddev_samp_fields
+    sum: Questions_sum_fields
+    var_pop: Questions_var_pop_fields
+    var_samp: Questions_var_samp_fields
+    variance: Questions_variance_fields
 }
 
-# order by aggregate values of table "Questions"
-input Questions_aggregate_order_by {
-  avg: Questions_avg_order_by
-  count: order_by
-  max: Questions_max_order_by
-  min: Questions_min_order_by
-  stddev: Questions_stddev_order_by
-  stddev_pop: Questions_stddev_pop_order_by
-  stddev_samp: Questions_stddev_samp_order_by
-  sum: Questions_sum_order_by
-  var_pop: Questions_var_pop_order_by
-  var_samp: Questions_var_samp_order_by
-  variance: Questions_variance_order_by
-}
-
-# input type for inserting array relation for remote table "Questions"
-input Questions_arr_rel_insert_input {
-  data: [Questions_insert_input!]!
-  on_conflict: Questions_on_conflict
-}
-
-# aggregate avg on columns
+"aggregate avg on columns"
 type Questions_avg_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by avg() on columns of table "Questions"
-input Questions_avg_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# Boolean expression to filter rows from the table "Questions". All fields are combined with a logical 'AND'.
-input Questions_bool_exp {
-  Id: Int_comparison_exp
-  Libelle: String_comparison_exp
-  QuestionAnswer: QuestionAnswers_bool_exp
-  QuestionAnswerId: Int_comparison_exp
-  QuestionCategorieId: Int_comparison_exp
-  QuestionCategory: QuestionCategories_bool_exp
-  QuestionPropositions: QuestionPropositions_bool_exp
-  _and: [Questions_bool_exp]
-  _not: Questions_bool_exp
-  _or: [Questions_bool_exp]
-}
-
-# unique or primary key constraints on table "Questions"
-enum Questions_constraint {
-  # unique or primary key constraint
-  PK_Questions
-}
-
-# input type for incrementing integer column in table "Questions"
-input Questions_inc_input {
-  Id: Int
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
-}
-
-# input type for inserting data into table "Questions"
-input Questions_insert_input {
-  Id: Int
-  Libelle: String
-  QuestionAnswer: QuestionAnswers_obj_rel_insert_input
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
-  QuestionCategory: QuestionCategories_obj_rel_insert_input
-  QuestionPropositions: QuestionPropositions_arr_rel_insert_input
-}
-
-# aggregate max on columns
+"aggregate max on columns"
 type Questions_max_fields {
-  Id: Int
-  Libelle: String
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
+    Id: Int
+    Libelle: String
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
 }
 
-# order by max() on columns of table "Questions"
-input Questions_max_order_by {
-  Id: order_by
-  Libelle: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate min on columns
+"aggregate min on columns"
 type Questions_min_fields {
-  Id: Int
-  Libelle: String
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
+    Id: Int
+    Libelle: String
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
 }
 
-# order by min() on columns of table "Questions"
-input Questions_min_order_by {
-  Id: order_by
-  Libelle: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# response of any mutation on the table "Questions"
+"response of any mutation on the table \"Questions\""
 type Questions_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [Questions!]!
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [Questions!]!
 }
 
-# input type for inserting object relation for remote table "Questions"
-input Questions_obj_rel_insert_input {
-  data: Questions_insert_input!
-  on_conflict: Questions_on_conflict
-}
-
-# on conflict condition type for table "Questions"
-input Questions_on_conflict {
-  constraint: Questions_constraint!
-  update_columns: [Questions_update_column!]!
-  where: Questions_bool_exp
-}
-
-# ordering options when selecting data from "Questions"
-input Questions_order_by {
-  Id: order_by
-  Libelle: order_by
-  QuestionAnswer: QuestionAnswers_order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-  QuestionCategory: QuestionCategories_order_by
-  QuestionPropositions_aggregate: QuestionPropositions_aggregate_order_by
-}
-
-# primary key columns input for table: "Questions"
-input Questions_pk_columns_input {
-  Id: Int!
-}
-
-# select columns of table "Questions"
-enum Questions_select_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-
-  # column name
-  QuestionAnswerId
-
-  # column name
-  QuestionCategorieId
-}
-
-# input type for updating data in table "Questions"
-input Questions_set_input {
-  Id: Int
-  Libelle: String
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
-}
-
-# aggregate stddev on columns
+"aggregate stddev on columns"
 type Questions_stddev_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by stddev() on columns of table "Questions"
-input Questions_stddev_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate stddev_pop on columns
+"aggregate stddev_pop on columns"
 type Questions_stddev_pop_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by stddev_pop() on columns of table "Questions"
-input Questions_stddev_pop_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate stddev_samp on columns
+"aggregate stddev_samp on columns"
 type Questions_stddev_samp_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by stddev_samp() on columns of table "Questions"
-input Questions_stddev_samp_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate sum on columns
+"aggregate sum on columns"
 type Questions_sum_fields {
-  Id: Int
-  QuestionAnswerId: Int
-  QuestionCategorieId: Int
+    Id: Int
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
 }
 
-# order by sum() on columns of table "Questions"
-input Questions_sum_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# update columns of table "Questions"
-enum Questions_update_column {
-  # column name
-  Id
-
-  # column name
-  Libelle
-
-  # column name
-  QuestionAnswerId
-
-  # column name
-  QuestionCategorieId
-}
-
-# aggregate var_pop on columns
+"aggregate var_pop on columns"
 type Questions_var_pop_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by var_pop() on columns of table "Questions"
-input Questions_var_pop_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate var_samp on columns
+"aggregate var_samp on columns"
 type Questions_var_samp_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by var_samp() on columns of table "Questions"
-input Questions_var_samp_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
-}
-
-# aggregate variance on columns
+"aggregate variance on columns"
 type Questions_variance_fields {
-  Id: Float
-  QuestionAnswerId: Float
-  QuestionCategorieId: Float
+    Id: Float
+    QuestionAnswerId: Float
+    QuestionCategorieId: Float
 }
 
-# order by variance() on columns of table "Questions"
-input Questions_variance_order_by {
-  Id: order_by
-  QuestionAnswerId: order_by
-  QuestionCategorieId: order_by
+type SampleOutput {
+    accessToken: String!
 }
 
-# expression to compare columns of type String. All fields are combined with logical 'AND'.
-input String_comparison_exp {
-  _eq: String
-  _gt: String
-  _gte: String
-  _ilike: String
-  _in: [String!]
-  _is_null: Boolean
-  _like: String
-  _lt: String
-  _lte: String
-  _neq: String
-  _nilike: String
-  _nin: [String!]
-  _nlike: String
-  _nsimilar: String
-  _similar: String
+"mutation root"
+type mutation_root {
+    "perform the action: \"actionName\""
+    actionName(arg1: SampleInput!): SampleOutput
+    "delete data from the table: \"QuestionAnswers\""
+    delete_QuestionAnswers(
+        "filter the rows which have to be deleted"
+        where: QuestionAnswers_bool_exp!
+    ): QuestionAnswers_mutation_response
+    "delete single row from the table: \"QuestionAnswers\""
+    delete_QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
+    "delete data from the table: \"QuestionCategories\""
+    delete_QuestionCategories(
+        "filter the rows which have to be deleted"
+        where: QuestionCategories_bool_exp!
+    ): QuestionCategories_mutation_response
+    "delete single row from the table: \"QuestionCategories\""
+    delete_QuestionCategories_by_pk(Id: Int!): QuestionCategories
+    "delete data from the table: \"QuestionPropositions\""
+    delete_QuestionPropositions(
+        "filter the rows which have to be deleted"
+        where: QuestionPropositions_bool_exp!
+    ): QuestionPropositions_mutation_response
+    "delete single row from the table: \"QuestionPropositions\""
+    delete_QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
+    "delete data from the table: \"Questions\""
+    delete_Questions(
+        "filter the rows which have to be deleted"
+        where: Questions_bool_exp!
+    ): Questions_mutation_response
+    "delete single row from the table: \"Questions\""
+    delete_Questions_by_pk(Id: Int!): Questions
+    "insert data into the table: \"QuestionAnswers\""
+    insert_QuestionAnswers(
+        "the rows to be inserted"
+        objects: [QuestionAnswers_insert_input!]!,
+        "on conflict condition"
+        on_conflict: QuestionAnswers_on_conflict
+    ): QuestionAnswers_mutation_response
+    "insert a single row into the table: \"QuestionAnswers\""
+    insert_QuestionAnswers_one(
+        "the row to be inserted"
+        object: QuestionAnswers_insert_input!,
+        "on conflict condition"
+        on_conflict: QuestionAnswers_on_conflict
+    ): QuestionAnswers
+    "insert data into the table: \"QuestionCategories\""
+    insert_QuestionCategories(
+        "the rows to be inserted"
+        objects: [QuestionCategories_insert_input!]!,
+        "on conflict condition"
+        on_conflict: QuestionCategories_on_conflict
+    ): QuestionCategories_mutation_response
+    "insert a single row into the table: \"QuestionCategories\""
+    insert_QuestionCategories_one(
+        "the row to be inserted"
+        object: QuestionCategories_insert_input!,
+        "on conflict condition"
+        on_conflict: QuestionCategories_on_conflict
+    ): QuestionCategories
+    "insert data into the table: \"QuestionPropositions\""
+    insert_QuestionPropositions(
+        "the rows to be inserted"
+        objects: [QuestionPropositions_insert_input!]!,
+        "on conflict condition"
+        on_conflict: QuestionPropositions_on_conflict
+    ): QuestionPropositions_mutation_response
+    "insert a single row into the table: \"QuestionPropositions\""
+    insert_QuestionPropositions_one(
+        "the row to be inserted"
+        object: QuestionPropositions_insert_input!,
+        "on conflict condition"
+        on_conflict: QuestionPropositions_on_conflict
+    ): QuestionPropositions
+    "insert data into the table: \"Questions\""
+    insert_Questions(
+        "the rows to be inserted"
+        objects: [Questions_insert_input!]!,
+        "on conflict condition"
+        on_conflict: Questions_on_conflict
+    ): Questions_mutation_response
+    "insert a single row into the table: \"Questions\""
+    insert_Questions_one(
+        "the row to be inserted"
+        object: Questions_insert_input!,
+        "on conflict condition"
+        on_conflict: Questions_on_conflict
+    ): Questions
+    "update data of the table: \"QuestionAnswers\""
+    update_QuestionAnswers(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionAnswers_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionAnswers_set_input,
+        "filter the rows which have to be updated"
+        where: QuestionAnswers_bool_exp!
+    ): QuestionAnswers_mutation_response
+    "update single row of the table: \"QuestionAnswers\""
+    update_QuestionAnswers_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionAnswers_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionAnswers_set_input,
+        pk_columns: QuestionAnswers_pk_columns_input!
+    ): QuestionAnswers
+    "update data of the table: \"QuestionCategories\""
+    update_QuestionCategories(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionCategories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionCategories_set_input,
+        "filter the rows which have to be updated"
+        where: QuestionCategories_bool_exp!
+    ): QuestionCategories_mutation_response
+    "update single row of the table: \"QuestionCategories\""
+    update_QuestionCategories_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionCategories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionCategories_set_input,
+        pk_columns: QuestionCategories_pk_columns_input!
+    ): QuestionCategories
+    "update data of the table: \"QuestionPropositions\""
+    update_QuestionPropositions(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionPropositions_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionPropositions_set_input,
+        "filter the rows which have to be updated"
+        where: QuestionPropositions_bool_exp!
+    ): QuestionPropositions_mutation_response
+    "update single row of the table: \"QuestionPropositions\""
+    update_QuestionPropositions_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: QuestionPropositions_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: QuestionPropositions_set_input,
+        pk_columns: QuestionPropositions_pk_columns_input!
+    ): QuestionPropositions
+    "update data of the table: \"Questions\""
+    update_Questions(
+        "increments the integer columns with given value of the filtered values"
+        _inc: Questions_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: Questions_set_input,
+        "filter the rows which have to be updated"
+        where: Questions_bool_exp!
+    ): Questions_mutation_response
+    "update single row of the table: \"Questions\""
+    update_Questions_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: Questions_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: Questions_set_input,
+        pk_columns: Questions_pk_columns_input!
+    ): Questions
 }
 
-# subscription root
+"query root"
+type query_root {
+    "fetch data from the table: \"QuestionAnswers\""
+    QuestionAnswers(
+        "distinct select on columns"
+        distinct_on: [QuestionAnswers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionAnswers_order_by!],
+        "filter the rows returned"
+        where: QuestionAnswers_bool_exp
+    ): [QuestionAnswers!]!
+    "fetch aggregated fields from the table: \"QuestionAnswers\""
+    QuestionAnswers_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionAnswers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionAnswers_order_by!],
+        "filter the rows returned"
+        where: QuestionAnswers_bool_exp
+    ): QuestionAnswers_aggregate!
+    "fetch data from the table: \"QuestionAnswers\" using primary key columns"
+    QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
+    "fetch data from the table: \"QuestionCategories\""
+    QuestionCategories(
+        "distinct select on columns"
+        distinct_on: [QuestionCategories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionCategories_order_by!],
+        "filter the rows returned"
+        where: QuestionCategories_bool_exp
+    ): [QuestionCategories!]!
+    "fetch aggregated fields from the table: \"QuestionCategories\""
+    QuestionCategories_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionCategories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionCategories_order_by!],
+        "filter the rows returned"
+        where: QuestionCategories_bool_exp
+    ): QuestionCategories_aggregate!
+    "fetch data from the table: \"QuestionCategories\" using primary key columns"
+    QuestionCategories_by_pk(Id: Int!): QuestionCategories
+    "fetch data from the table: \"QuestionPropositions\""
+    QuestionPropositions(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): [QuestionPropositions!]!
+    "fetch aggregated fields from the table: \"QuestionPropositions\""
+    QuestionPropositions_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): QuestionPropositions_aggregate!
+    "fetch data from the table: \"QuestionPropositions\" using primary key columns"
+    QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
+    "fetch data from the table: \"Questions\""
+    Questions(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): [Questions!]!
+    "fetch aggregated fields from the table: \"Questions\""
+    Questions_aggregate(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): Questions_aggregate!
+    "fetch data from the table: \"Questions\" using primary key columns"
+    Questions_by_pk(Id: Int!): Questions
+}
+
+"subscription root"
 type subscription_root {
-  # fetch data from the table: "QuestionAnswers"
-  QuestionAnswers(
-    # distinct select on columns
-    distinct_on: [QuestionAnswers_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionAnswers_order_by!]
-
-    # filter the rows returned
-    where: QuestionAnswers_bool_exp
-  ): [QuestionAnswers!]!
-
-  # fetch aggregated fields from the table: "QuestionAnswers"
-  QuestionAnswers_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionAnswers_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionAnswers_order_by!]
-
-    # filter the rows returned
-    where: QuestionAnswers_bool_exp
-  ): QuestionAnswers_aggregate!
-
-  # fetch data from the table: "QuestionAnswers" using primary key columns
-  QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
-
-  # fetch data from the table: "QuestionCategories"
-  QuestionCategories(
-    # distinct select on columns
-    distinct_on: [QuestionCategories_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionCategories_order_by!]
-
-    # filter the rows returned
-    where: QuestionCategories_bool_exp
-  ): [QuestionCategories!]!
-
-  # fetch aggregated fields from the table: "QuestionCategories"
-  QuestionCategories_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionCategories_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionCategories_order_by!]
-
-    # filter the rows returned
-    where: QuestionCategories_bool_exp
-  ): QuestionCategories_aggregate!
-
-  # fetch data from the table: "QuestionCategories" using primary key columns
-  QuestionCategories_by_pk(Id: Int!): QuestionCategories
-
-  # fetch data from the table: "QuestionPropositions"
-  QuestionPropositions(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): [QuestionPropositions!]!
-
-  # fetch aggregated fields from the table: "QuestionPropositions"
-  QuestionPropositions_aggregate(
-    # distinct select on columns
-    distinct_on: [QuestionPropositions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [QuestionPropositions_order_by!]
-
-    # filter the rows returned
-    where: QuestionPropositions_bool_exp
-  ): QuestionPropositions_aggregate!
-
-  # fetch data from the table: "QuestionPropositions" using primary key columns
-  QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
-
-  # fetch data from the table: "Questions"
-  Questions(
-    # distinct select on columns
-    distinct_on: [Questions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [Questions_order_by!]
-
-    # filter the rows returned
-    where: Questions_bool_exp
-  ): [Questions!]!
-
-  # fetch aggregated fields from the table: "Questions"
-  Questions_aggregate(
-    # distinct select on columns
-    distinct_on: [Questions_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [Questions_order_by!]
-
-    # filter the rows returned
-    where: Questions_bool_exp
-  ): Questions_aggregate!
-
-  # fetch data from the table: "Questions" using primary key columns
-  Questions_by_pk(Id: Int!): Questions
+    "fetch data from the table: \"QuestionAnswers\""
+    QuestionAnswers(
+        "distinct select on columns"
+        distinct_on: [QuestionAnswers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionAnswers_order_by!],
+        "filter the rows returned"
+        where: QuestionAnswers_bool_exp
+    ): [QuestionAnswers!]!
+    "fetch aggregated fields from the table: \"QuestionAnswers\""
+    QuestionAnswers_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionAnswers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionAnswers_order_by!],
+        "filter the rows returned"
+        where: QuestionAnswers_bool_exp
+    ): QuestionAnswers_aggregate!
+    "fetch data from the table: \"QuestionAnswers\" using primary key columns"
+    QuestionAnswers_by_pk(Id: Int!): QuestionAnswers
+    "fetch data from the table: \"QuestionCategories\""
+    QuestionCategories(
+        "distinct select on columns"
+        distinct_on: [QuestionCategories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionCategories_order_by!],
+        "filter the rows returned"
+        where: QuestionCategories_bool_exp
+    ): [QuestionCategories!]!
+    "fetch aggregated fields from the table: \"QuestionCategories\""
+    QuestionCategories_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionCategories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionCategories_order_by!],
+        "filter the rows returned"
+        where: QuestionCategories_bool_exp
+    ): QuestionCategories_aggregate!
+    "fetch data from the table: \"QuestionCategories\" using primary key columns"
+    QuestionCategories_by_pk(Id: Int!): QuestionCategories
+    "fetch data from the table: \"QuestionPropositions\""
+    QuestionPropositions(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): [QuestionPropositions!]!
+    "fetch aggregated fields from the table: \"QuestionPropositions\""
+    QuestionPropositions_aggregate(
+        "distinct select on columns"
+        distinct_on: [QuestionPropositions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [QuestionPropositions_order_by!],
+        "filter the rows returned"
+        where: QuestionPropositions_bool_exp
+    ): QuestionPropositions_aggregate!
+    "fetch data from the table: \"QuestionPropositions\" using primary key columns"
+    QuestionPropositions_by_pk(Id: Int!): QuestionPropositions
+    "fetch data from the table: \"Questions\""
+    Questions(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): [Questions!]!
+    "fetch aggregated fields from the table: \"Questions\""
+    Questions_aggregate(
+        "distinct select on columns"
+        distinct_on: [Questions_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Questions_order_by!],
+        "filter the rows returned"
+        where: Questions_bool_exp
+    ): Questions_aggregate!
+    "fetch data from the table: \"Questions\" using primary key columns"
+    Questions_by_pk(Id: Int!): Questions
 }
 
+"unique or primary key constraints on table \"QuestionAnswers\""
+enum QuestionAnswers_constraint {
+    "unique or primary key constraint"
+    PK_QuestionAnswers
+}
+
+"select columns of table \"QuestionAnswers\""
+enum QuestionAnswers_select_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+}
+
+"update columns of table \"QuestionAnswers\""
+enum QuestionAnswers_update_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+}
+
+"unique or primary key constraints on table \"QuestionCategories\""
+enum QuestionCategories_constraint {
+    "unique or primary key constraint"
+    PK_QuestionCategories
+}
+
+"select columns of table \"QuestionCategories\""
+enum QuestionCategories_select_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+}
+
+"update columns of table \"QuestionCategories\""
+enum QuestionCategories_update_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+}
+
+"unique or primary key constraints on table \"QuestionPropositions\""
+enum QuestionPropositions_constraint {
+    "unique or primary key constraint"
+    PK_QuestionPropositions
+}
+
+"select columns of table \"QuestionPropositions\""
+enum QuestionPropositions_select_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+    "column name"
+    QuestionId
+}
+
+"update columns of table \"QuestionPropositions\""
+enum QuestionPropositions_update_column {
+    "column name"
+    Id
+    "column name"
+    Libelle
+    "column name"
+    QuestionId
+}
+
+"unique or primary key constraints on table \"Questions\""
+enum Questions_constraint {
+    "unique or primary key constraint"
+    PK_Questions
+}
+
+"select columns of table \"Questions\""
+enum Questions_select_column {
+    "column name"
+    Id
+    "column name"
+    IsPublie
+    "column name"
+    Libelle
+    "column name"
+    QuestionAnswerId
+    "column name"
+    QuestionCategorieId
+}
+
+"update columns of table \"Questions\""
+enum Questions_update_column {
+    "column name"
+    Id
+    "column name"
+    IsPublie
+    "column name"
+    Libelle
+    "column name"
+    QuestionAnswerId
+    "column name"
+    QuestionCategorieId
+}
+
+"column ordering options"
+enum order_by {
+    "in the ascending order, nulls last"
+    asc
+    "in the ascending order, nulls first"
+    asc_nulls_first
+    "in the ascending order, nulls last"
+    asc_nulls_last
+    "in the descending order, nulls first"
+    desc
+    "in the descending order, nulls first"
+    desc_nulls_first
+    "in the descending order, nulls last"
+    desc_nulls_last
+}
+
+"expression to compare columns of type Boolean. All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"expression to compare columns of type Int. All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"order by aggregate values of table \"QuestionAnswers\""
+input QuestionAnswers_aggregate_order_by {
+    avg: QuestionAnswers_avg_order_by
+    count: order_by
+    max: QuestionAnswers_max_order_by
+    min: QuestionAnswers_min_order_by
+    stddev: QuestionAnswers_stddev_order_by
+    stddev_pop: QuestionAnswers_stddev_pop_order_by
+    stddev_samp: QuestionAnswers_stddev_samp_order_by
+    sum: QuestionAnswers_sum_order_by
+    var_pop: QuestionAnswers_var_pop_order_by
+    var_samp: QuestionAnswers_var_samp_order_by
+    variance: QuestionAnswers_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"QuestionAnswers\""
+input QuestionAnswers_arr_rel_insert_input {
+    data: [QuestionAnswers_insert_input!]!
+    on_conflict: QuestionAnswers_on_conflict
+}
+
+"order by avg() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_avg_order_by {
+    Id: order_by
+}
+
+"Boolean expression to filter rows from the table \"QuestionAnswers\". All fields are combined with a logical 'AND'."
+input QuestionAnswers_bool_exp {
+    Id: Int_comparison_exp
+    Libelle: String_comparison_exp
+    Questions: Questions_bool_exp
+    _and: [QuestionAnswers_bool_exp]
+    _not: QuestionAnswers_bool_exp
+    _or: [QuestionAnswers_bool_exp]
+}
+
+"input type for incrementing integer column in table \"QuestionAnswers\""
+input QuestionAnswers_inc_input {
+    Id: Int
+}
+
+"input type for inserting data into table \"QuestionAnswers\""
+input QuestionAnswers_insert_input {
+    Id: Int
+    Libelle: String
+    Questions: Questions_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_max_order_by {
+    Id: order_by
+    Libelle: order_by
+}
+
+"order by min() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_min_order_by {
+    Id: order_by
+    Libelle: order_by
+}
+
+"input type for inserting object relation for remote table \"QuestionAnswers\""
+input QuestionAnswers_obj_rel_insert_input {
+    data: QuestionAnswers_insert_input!
+    on_conflict: QuestionAnswers_on_conflict
+}
+
+"on conflict condition type for table \"QuestionAnswers\""
+input QuestionAnswers_on_conflict {
+    constraint: QuestionAnswers_constraint!
+    update_columns: [QuestionAnswers_update_column!]!
+    where: QuestionAnswers_bool_exp
+}
+
+"ordering options when selecting data from \"QuestionAnswers\""
+input QuestionAnswers_order_by {
+    Id: order_by
+    Libelle: order_by
+    Questions_aggregate: Questions_aggregate_order_by
+}
+
+"primary key columns input for table: \"QuestionAnswers\""
+input QuestionAnswers_pk_columns_input {
+    Id: Int!
+}
+
+"input type for updating data in table \"QuestionAnswers\""
+input QuestionAnswers_set_input {
+    Id: Int
+    Libelle: String
+}
+
+"order by stddev() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_stddev_order_by {
+    Id: order_by
+}
+
+"order by stddev_pop() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_stddev_pop_order_by {
+    Id: order_by
+}
+
+"order by stddev_samp() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_stddev_samp_order_by {
+    Id: order_by
+}
+
+"order by sum() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_sum_order_by {
+    Id: order_by
+}
+
+"order by var_pop() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_var_pop_order_by {
+    Id: order_by
+}
+
+"order by var_samp() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_var_samp_order_by {
+    Id: order_by
+}
+
+"order by variance() on columns of table \"QuestionAnswers\""
+input QuestionAnswers_variance_order_by {
+    Id: order_by
+}
+
+"order by aggregate values of table \"QuestionCategories\""
+input QuestionCategories_aggregate_order_by {
+    avg: QuestionCategories_avg_order_by
+    count: order_by
+    max: QuestionCategories_max_order_by
+    min: QuestionCategories_min_order_by
+    stddev: QuestionCategories_stddev_order_by
+    stddev_pop: QuestionCategories_stddev_pop_order_by
+    stddev_samp: QuestionCategories_stddev_samp_order_by
+    sum: QuestionCategories_sum_order_by
+    var_pop: QuestionCategories_var_pop_order_by
+    var_samp: QuestionCategories_var_samp_order_by
+    variance: QuestionCategories_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"QuestionCategories\""
+input QuestionCategories_arr_rel_insert_input {
+    data: [QuestionCategories_insert_input!]!
+    on_conflict: QuestionCategories_on_conflict
+}
+
+"order by avg() on columns of table \"QuestionCategories\""
+input QuestionCategories_avg_order_by {
+    Id: order_by
+}
+
+"Boolean expression to filter rows from the table \"QuestionCategories\". All fields are combined with a logical 'AND'."
+input QuestionCategories_bool_exp {
+    Id: Int_comparison_exp
+    Libelle: String_comparison_exp
+    Questions: Questions_bool_exp
+    _and: [QuestionCategories_bool_exp]
+    _not: QuestionCategories_bool_exp
+    _or: [QuestionCategories_bool_exp]
+}
+
+"input type for incrementing integer column in table \"QuestionCategories\""
+input QuestionCategories_inc_input {
+    Id: Int
+}
+
+"input type for inserting data into table \"QuestionCategories\""
+input QuestionCategories_insert_input {
+    Id: Int
+    Libelle: String
+    Questions: Questions_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"QuestionCategories\""
+input QuestionCategories_max_order_by {
+    Id: order_by
+    Libelle: order_by
+}
+
+"order by min() on columns of table \"QuestionCategories\""
+input QuestionCategories_min_order_by {
+    Id: order_by
+    Libelle: order_by
+}
+
+"input type for inserting object relation for remote table \"QuestionCategories\""
+input QuestionCategories_obj_rel_insert_input {
+    data: QuestionCategories_insert_input!
+    on_conflict: QuestionCategories_on_conflict
+}
+
+"on conflict condition type for table \"QuestionCategories\""
+input QuestionCategories_on_conflict {
+    constraint: QuestionCategories_constraint!
+    update_columns: [QuestionCategories_update_column!]!
+    where: QuestionCategories_bool_exp
+}
+
+"ordering options when selecting data from \"QuestionCategories\""
+input QuestionCategories_order_by {
+    Id: order_by
+    Libelle: order_by
+    Questions_aggregate: Questions_aggregate_order_by
+}
+
+"primary key columns input for table: \"QuestionCategories\""
+input QuestionCategories_pk_columns_input {
+    Id: Int!
+}
+
+"input type for updating data in table \"QuestionCategories\""
+input QuestionCategories_set_input {
+    Id: Int
+    Libelle: String
+}
+
+"order by stddev() on columns of table \"QuestionCategories\""
+input QuestionCategories_stddev_order_by {
+    Id: order_by
+}
+
+"order by stddev_pop() on columns of table \"QuestionCategories\""
+input QuestionCategories_stddev_pop_order_by {
+    Id: order_by
+}
+
+"order by stddev_samp() on columns of table \"QuestionCategories\""
+input QuestionCategories_stddev_samp_order_by {
+    Id: order_by
+}
+
+"order by sum() on columns of table \"QuestionCategories\""
+input QuestionCategories_sum_order_by {
+    Id: order_by
+}
+
+"order by var_pop() on columns of table \"QuestionCategories\""
+input QuestionCategories_var_pop_order_by {
+    Id: order_by
+}
+
+"order by var_samp() on columns of table \"QuestionCategories\""
+input QuestionCategories_var_samp_order_by {
+    Id: order_by
+}
+
+"order by variance() on columns of table \"QuestionCategories\""
+input QuestionCategories_variance_order_by {
+    Id: order_by
+}
+
+"order by aggregate values of table \"QuestionPropositions\""
+input QuestionPropositions_aggregate_order_by {
+    avg: QuestionPropositions_avg_order_by
+    count: order_by
+    max: QuestionPropositions_max_order_by
+    min: QuestionPropositions_min_order_by
+    stddev: QuestionPropositions_stddev_order_by
+    stddev_pop: QuestionPropositions_stddev_pop_order_by
+    stddev_samp: QuestionPropositions_stddev_samp_order_by
+    sum: QuestionPropositions_sum_order_by
+    var_pop: QuestionPropositions_var_pop_order_by
+    var_samp: QuestionPropositions_var_samp_order_by
+    variance: QuestionPropositions_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"QuestionPropositions\""
+input QuestionPropositions_arr_rel_insert_input {
+    data: [QuestionPropositions_insert_input!]!
+    on_conflict: QuestionPropositions_on_conflict
+}
+
+"order by avg() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_avg_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"Boolean expression to filter rows from the table \"QuestionPropositions\". All fields are combined with a logical 'AND'."
+input QuestionPropositions_bool_exp {
+    Id: Int_comparison_exp
+    Libelle: String_comparison_exp
+    Question: Questions_bool_exp
+    QuestionId: Int_comparison_exp
+    _and: [QuestionPropositions_bool_exp]
+    _not: QuestionPropositions_bool_exp
+    _or: [QuestionPropositions_bool_exp]
+}
+
+"input type for incrementing integer column in table \"QuestionPropositions\""
+input QuestionPropositions_inc_input {
+    Id: Int
+    QuestionId: Int
+}
+
+"input type for inserting data into table \"QuestionPropositions\""
+input QuestionPropositions_insert_input {
+    Id: Int
+    Libelle: String
+    Question: Questions_obj_rel_insert_input
+    QuestionId: Int
+}
+
+"order by max() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_max_order_by {
+    Id: order_by
+    Libelle: order_by
+    QuestionId: order_by
+}
+
+"order by min() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_min_order_by {
+    Id: order_by
+    Libelle: order_by
+    QuestionId: order_by
+}
+
+"input type for inserting object relation for remote table \"QuestionPropositions\""
+input QuestionPropositions_obj_rel_insert_input {
+    data: QuestionPropositions_insert_input!
+    on_conflict: QuestionPropositions_on_conflict
+}
+
+"on conflict condition type for table \"QuestionPropositions\""
+input QuestionPropositions_on_conflict {
+    constraint: QuestionPropositions_constraint!
+    update_columns: [QuestionPropositions_update_column!]!
+    where: QuestionPropositions_bool_exp
+}
+
+"ordering options when selecting data from \"QuestionPropositions\""
+input QuestionPropositions_order_by {
+    Id: order_by
+    Libelle: order_by
+    Question: Questions_order_by
+    QuestionId: order_by
+}
+
+"primary key columns input for table: \"QuestionPropositions\""
+input QuestionPropositions_pk_columns_input {
+    Id: Int!
+}
+
+"input type for updating data in table \"QuestionPropositions\""
+input QuestionPropositions_set_input {
+    Id: Int
+    Libelle: String
+    QuestionId: Int
+}
+
+"order by stddev() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_stddev_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by stddev_pop() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_stddev_pop_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by stddev_samp() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_stddev_samp_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by sum() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_sum_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by var_pop() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_var_pop_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by var_samp() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_var_samp_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by variance() on columns of table \"QuestionPropositions\""
+input QuestionPropositions_variance_order_by {
+    Id: order_by
+    QuestionId: order_by
+}
+
+"order by aggregate values of table \"Questions\""
+input Questions_aggregate_order_by {
+    avg: Questions_avg_order_by
+    count: order_by
+    max: Questions_max_order_by
+    min: Questions_min_order_by
+    stddev: Questions_stddev_order_by
+    stddev_pop: Questions_stddev_pop_order_by
+    stddev_samp: Questions_stddev_samp_order_by
+    sum: Questions_sum_order_by
+    var_pop: Questions_var_pop_order_by
+    var_samp: Questions_var_samp_order_by
+    variance: Questions_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"Questions\""
+input Questions_arr_rel_insert_input {
+    data: [Questions_insert_input!]!
+    on_conflict: Questions_on_conflict
+}
+
+"order by avg() on columns of table \"Questions\""
+input Questions_avg_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"Boolean expression to filter rows from the table \"Questions\". All fields are combined with a logical 'AND'."
+input Questions_bool_exp {
+    Id: Int_comparison_exp
+    IsPublie: Boolean_comparison_exp
+    Libelle: String_comparison_exp
+    QuestionAnswer: QuestionAnswers_bool_exp
+    QuestionAnswerId: Int_comparison_exp
+    QuestionCategorieId: Int_comparison_exp
+    QuestionCategory: QuestionCategories_bool_exp
+    QuestionPropositions: QuestionPropositions_bool_exp
+    _and: [Questions_bool_exp]
+    _not: Questions_bool_exp
+    _or: [Questions_bool_exp]
+}
+
+"input type for incrementing integer column in table \"Questions\""
+input Questions_inc_input {
+    Id: Int
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
+}
+
+"input type for inserting data into table \"Questions\""
+input Questions_insert_input {
+    Id: Int
+    IsPublie: Boolean
+    Libelle: String
+    QuestionAnswer: QuestionAnswers_obj_rel_insert_input
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
+    QuestionCategory: QuestionCategories_obj_rel_insert_input
+    QuestionPropositions: QuestionPropositions_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"Questions\""
+input Questions_max_order_by {
+    Id: order_by
+    Libelle: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by min() on columns of table \"Questions\""
+input Questions_min_order_by {
+    Id: order_by
+    Libelle: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"input type for inserting object relation for remote table \"Questions\""
+input Questions_obj_rel_insert_input {
+    data: Questions_insert_input!
+    on_conflict: Questions_on_conflict
+}
+
+"on conflict condition type for table \"Questions\""
+input Questions_on_conflict {
+    constraint: Questions_constraint!
+    update_columns: [Questions_update_column!]!
+    where: Questions_bool_exp
+}
+
+"ordering options when selecting data from \"Questions\""
+input Questions_order_by {
+    Id: order_by
+    IsPublie: order_by
+    Libelle: order_by
+    QuestionAnswer: QuestionAnswers_order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+    QuestionCategory: QuestionCategories_order_by
+    QuestionPropositions_aggregate: QuestionPropositions_aggregate_order_by
+}
+
+"primary key columns input for table: \"Questions\""
+input Questions_pk_columns_input {
+    Id: Int!
+}
+
+"input type for updating data in table \"Questions\""
+input Questions_set_input {
+    Id: Int
+    IsPublie: Boolean
+    Libelle: String
+    QuestionAnswerId: Int
+    QuestionCategorieId: Int
+}
+
+"order by stddev() on columns of table \"Questions\""
+input Questions_stddev_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by stddev_pop() on columns of table \"Questions\""
+input Questions_stddev_pop_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by stddev_samp() on columns of table \"Questions\""
+input Questions_stddev_samp_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by sum() on columns of table \"Questions\""
+input Questions_sum_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by var_pop() on columns of table \"Questions\""
+input Questions_var_pop_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by var_samp() on columns of table \"Questions\""
+input Questions_var_samp_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+"order by variance() on columns of table \"Questions\""
+input Questions_variance_order_by {
+    Id: order_by
+    QuestionAnswerId: order_by
+    QuestionCategorieId: order_by
+}
+
+input SampleInput {
+    password: String!
+    username: String!
+}
+
+"expression to compare columns of type String. All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    _ilike: String
+    _in: [String!]
+    _is_null: Boolean
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    _nilike: String
+    _nin: [String!]
+    _nlike: String
+    _nsimilar: String
+    _similar: String
+}
+
+"expression to compare columns of type json. All fields are combined with logical 'AND'."
+input json_comparison_exp {
+    _eq: json
+    _gt: json
+    _gte: json
+    _in: [json!]
+    _is_null: Boolean
+    _lt: json
+    _lte: json
+    _neq: json
+    _nin: [json!]
+}
+
+
+scalar json
+
+scalar timestamptz
+
+scalar uuid
