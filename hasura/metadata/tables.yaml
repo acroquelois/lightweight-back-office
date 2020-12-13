@@ -32,6 +32,7 @@
         num_retries: 0
         interval_sec: 10
         timeout_sec: 60
+#        TODO : Add env variable
       webhook: "http://host.docker.internal:5001/lightweight-back-office/us-central1/indexquestion"
   array_relationships:
     - name: QuestionPropositions
