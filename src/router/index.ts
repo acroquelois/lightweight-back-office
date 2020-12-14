@@ -33,6 +33,7 @@ const router = createRouter({
   history: createWebHistory(),
 })
 
+// TODO: Store user token
 router.beforeEach((to, from, next) => {
   const isLogged = store.getters.user
   if (!isLogged && to.path != '/login') {
