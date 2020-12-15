@@ -27,17 +27,6 @@ services:
     networks:
       - question
     restart: always
-  index-question-trigger:
-    image: acroquelois/index-question-trigger:0.6
-    container_name: "index_question_trigger_dev"
-    ports:
-      - "9500:9500"
-    environment:
-      HASURA_SERV_URL: "http://host.docker.internal:9100"
-      ELASTIC_SERV_URL: "http://host.docker.internal:9200"
-    networks:
-      - question
-    restart: always
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.0
     container_name: elasticsearch_dev
