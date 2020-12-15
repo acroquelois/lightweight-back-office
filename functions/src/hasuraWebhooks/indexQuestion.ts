@@ -1,9 +1,8 @@
-import * as functions from 'firebase-functions'
-import * as express from 'express'
-import * as bodyParser from 'body-parser'
-
 import { AxiosRequestConfig } from 'axios'
 
+const functions = require('firebase-functions')
+const express = require('express')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 const axios = require('axios').default
 
@@ -107,7 +106,7 @@ async function removeIndexQuestion(questionId: any): Promise<any> {
 
 app.use(bodyParser.json())
 
-app.post('/', async function (req, res) {
+app.post('/', async function (req: any, res: any) {
   try {
     const { Id, IsPublie } = getQuestionIdFromPayload(req.body)
     if (IsPublie) {
@@ -137,6 +136,6 @@ app.post('/', async function (req, res) {
   }
 })
 
-app.get('/', function (req, res) {
+app.get('/', function (req: any, res: any) {
   res.send('Hello World - For Event Triggers, try a POST request?')
 })

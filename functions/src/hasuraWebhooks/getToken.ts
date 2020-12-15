@@ -1,6 +1,6 @@
-import * as functions from 'firebase-functions'
-import * as express from 'express'
-import * as bodyParser from 'body-parser'
+const functions = require('firebase-functions')
+const express = require('express')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 
 //initialize express server
@@ -13,7 +13,7 @@ app.use(cors({ origin: true }))
 // Expose Express API as a single Cloud Function:
 exports.getToken = functions.region('europe-west1').https.onRequest(app)
 
-app.post('/', function (req, res) {
+app.post('/', function (req: any, res: any) {
     try {
         console.log(`[INFO]: Body: ${req.body}`)
         res.status(200)
@@ -23,6 +23,6 @@ app.post('/', function (req, res) {
     }
 })
 
-app.get('/', function (req, res) {
+app.get('/', function (req: any, res: any) {
     res.send('Get token')
 })
