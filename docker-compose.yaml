@@ -21,6 +21,7 @@ services:
       - "postgres"
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432
+      HASURA_GRAPHQL_AUTH_HOOK: http://8d20b76e982f.eu.ngrok.io/lightweight-back-office/europe-west1/authorization
       HASURA_GRAPHQL_ADMIN_SECRET: questionsecretkey
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_DEV_MODE: "false"
