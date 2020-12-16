@@ -1,29 +1,22 @@
-const functions = require('firebase-functions')
+import serviceAccount from '../service_account.json'
+import { adminApp, func } from '../config'
+
 const express = require('express')
-const firebaseRouter = express.Router()
-const admin = require('firebase-admin')
+
+const app = express()
+app.use(express.json())
+
 var error: any = null
 
-import { config } from '../config'
-
-// Initialize the Firebase admin SDK with your service account credentials
-if (config) {
-  try {
-    admin.initializeApp(config)
-  } catch (e) {
-    error = e
-  }
-}
-
-firebaseRouter.route('/webhook').get((request: any, response: any) => {
+app.get('/', (request: any, response: any) => {
   // Throw 500 if firebase is not configured
-  if (!config) {
-    response.status(500).send('Firebase not configured')
+  if (!serviceAccount) {
+    response.status(500).json('Firebase not configured')
     return
   }
   // Check for errors initializing firebase SDK
   if (error) {
-    response.status(500).send('Invalid firebase configuration')
+    response.status(500).json('Invalid firebase configuration')
     return
   }
   // Get authorization headers
@@ -36,9 +29,9 @@ firebaseRouter.route('/webhook').get((request: any, response: any) => {
     // Validate the received id_token
     const idToken = extractToken(authHeaders)
     console.log(idToken)
-    admin
+    adminApp
       .auth()
-      .verifyIdToken(idToken)
+      .verifyIdToken(idToken!)
       .then((decodedToken: any) => {
         const hasuraVariables = {
           'X-Hasura-User-Id': decodedToken.uid,
@@ -66,4 +59,4 @@ const extractToken = (bearerToken: any) => {
 }
 
 // Expose Express API as a single Cloud Function:
-exports.authorization = functions.region('europe-west1').https.onRequest(firebaseRouter)
+exports.authorization = func.https.onRequest(app)

@@ -1,20 +1,11 @@
 import { AxiosRequestConfig } from 'axios'
+import { func } from '../config'
 
-const functions = require('firebase-functions')
+const axios = require('axios')
 const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const axios = require('axios').default
 
-//initialize express server
 const app = express()
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-app.use(cors({ origin: true }))
-
-// Expose Express API as a single Cloud Function:
-exports.indexQuestion = functions.region('europe-west1').https.onRequest(app)
+app.use(express.json())
 
 function getQuestionIdFromPayload(payload: any) {
   const {
@@ -104,8 +95,6 @@ async function removeIndexQuestion(questionId: any): Promise<any> {
   )
 }
 
-app.use(bodyParser.json())
-
 app.post('/', async function (req: any, res: any) {
   try {
     const { Id, IsPublie } = getQuestionIdFromPayload(req.body)
@@ -139,3 +128,6 @@ app.post('/', async function (req: any, res: any) {
 app.get('/', function (req: any, res: any) {
   res.send('Hello World - For Event Triggers, try a POST request?')
 })
+
+// Expose Express API as a single Cloud Function:
+exports.indexQuestion = func.https.onRequest(app)

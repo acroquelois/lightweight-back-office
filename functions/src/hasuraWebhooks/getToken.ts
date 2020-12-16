@@ -1,18 +1,9 @@
-import serviceAccount from '../service_account.json'
-import { config } from '../config'
+import { adminApp, firebaseApp, func } from '../config'
 
-const functions = require('firebase-functions')
-const admin = require('firebase-admin')
-const firebase = require('firebase')
 const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
 
-firebase.default.initializeApp(config);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://lightweight-back-office.firebaseio.com',
-})
+const app = express()
+app.use(express.json())
 
 type AuthEntity = {
   username: string
@@ -40,20 +31,10 @@ function getUidFromResponse(body: any): string {
 
 function getTokenFromFirebase(auth: AuthEntity): Promise<any> {
   // TODO: find signIn function in firebase-admin
-  return firebase.default
+  return firebaseApp
     .auth()
     .signInWithEmailAndPassword(auth.username, auth.password)
 }
-
-//initialize express server
-const app = express()
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-app.use(cors({ origin: true }))
-
-// Expose Express API as a single Cloud Function:
-exports.getToken = functions.region('europe-west1').https.onRequest(app)
 
 app.post('/', function (req: any, res: any) {
   try {
@@ -63,7 +44,7 @@ app.post('/', function (req: any, res: any) {
         const uid = getUidFromResponse(data)
         console.log(`[INFO]: Logged as: ${uid}`)
         if (!uid) res.status(400).json({ msg: 'No uid returned' })
-        admin
+        adminApp
           .auth()
           .createCustomToken(uid)
           .then((customToken: any) => {
@@ -86,3 +67,6 @@ app.post('/', function (req: any, res: any) {
 app.get('/', function (req: any, res: any) {
   res.send('Get token')
 })
+
+// Expose Express API as a single Cloud Function:
+exports.getToken = func.https.onRequest(app)
