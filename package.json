@@ -9,11 +9,14 @@
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9.8.6",
     "core-js": "^3.6.5",
     "firebase": "^8.0.2",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
-    "tailwindcss": "^1.9.6",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "villus": "^1.0.0-rc.4",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-0",
