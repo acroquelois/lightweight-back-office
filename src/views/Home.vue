@@ -142,7 +142,7 @@ export default defineComponent({
 
     watchEffect(() => {
       if (doneDelete.value) {
-        executeGet()
+        executeGet({})
         doneDelete.value = false
       }
     })

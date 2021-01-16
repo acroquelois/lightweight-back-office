@@ -78,10 +78,10 @@ export const INSERT_QUESTION_CATEGORIE = gql`
 `
 
 export type InsertQuestion = {
-  Id?: Maybe<Number>
-  Libelle?: Maybe<String>
-  IsPublie?: Maybe<Boolean>
-  QuestionCategorieId?: Maybe<Number>
+  Id?: Maybe<number>
+  Libelle?: Maybe<string>
+  IsPublie?: Maybe<boolean>
+  QuestionCategorieId?: Maybe<number>
   QuestionAnswer?: QuestionAnswers_Insert_Input
   QuestionPropositions?: Array<QuestionAnswers_Insert_Input>
 }

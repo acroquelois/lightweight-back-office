@@ -57,15 +57,15 @@ export default defineComponent({
     const saveQuestion = () => {
       //TODO: Voir la cast des objects query in mutation obj
       const variable: InsertQuestion = {
-        Id: question.value.Questions_by_pk?.Id,
-        Libelle: question.value.Questions_by_pk?.Libelle,
-        IsPublie: question.value.Questions_by_pk?.IsPublie,
+        Id: question.value?.Questions_by_pk?.Id,
+        Libelle: question.value?.Questions_by_pk?.Libelle,
+        IsPublie: question.value?.Questions_by_pk?.IsPublie,
         QuestionCategorieId:
-          question.value.Questions_by_pk?.QuestionCategorieId,
-        QuestionAnswer: (question.value.Questions_by_pk
+          question.value?.Questions_by_pk?.QuestionCategorieId,
+        QuestionAnswer: (question.value?.Questions_by_pk
           ?.QuestionAnswer as unknown) as QuestionAnswers_Insert_Input,
         QuestionPropositions:
-          question.value.Questions_by_pk?.QuestionPropositions,
+          question.value?.Questions_by_pk?.QuestionPropositions,
       }
       executeSaveQuestion(variable)
     }

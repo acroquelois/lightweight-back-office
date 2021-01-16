@@ -138,7 +138,7 @@ export default defineComponent({
 
     const closeModal = () => {
       showModal.value = false
-      executeGetCategorie()
+      executeGetCategorie({})
     }
     return {
       props,
