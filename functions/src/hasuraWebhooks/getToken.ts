@@ -30,7 +30,6 @@ function getUidFromResponse(body: any): string {
 }
 
 function getTokenFromFirebase(auth: AuthEntity): Promise<any> {
-  // TODO: find signIn function in firebase-admin
   return firebaseApp
     .auth()
     .signInWithEmailAndPassword(auth.username, auth.password)
@@ -62,10 +61,6 @@ app.post('/', function (req: any, res: any) {
     console.log(`[ERROR]: Error in the payload: ${e}`)
     res.status(400).json({ msg: 'Error in the payload' })
   }
-})
-
-app.get('/', function (req: any, res: any) {
-  res.send('Get token')
 })
 
 // Expose Express API as a single Cloud Function:

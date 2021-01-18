@@ -37,7 +37,6 @@ app.get('/', (request: any, response: any) => {
           'X-Hasura-User-Id': decodedToken.uid,
           'X-Hasura-Role': 'user',
         }
-        console.log(hasuraVariables) // For debug
         // Send appropriate variables
         response.json(hasuraVariables)
       })
