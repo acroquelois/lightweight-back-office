@@ -2,7 +2,9 @@ actions:
 - name: getToken
   definition:
     kind: synchronous
-    handler: http://8d20b76e982f.eu.ngrok.io/lightweight-back-office/europe-west1/getToken
+    handler: https://europe-west1-lightweight-back-office-dev.cloudfunctions.net/getToken
+  permissions:
+  - role: anonymous
 custom_types:
   enums: []
   input_objects:

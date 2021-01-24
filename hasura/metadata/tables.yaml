@@ -160,4 +160,4 @@
       num_retries: 0
       interval_sec: 10
       timeout_sec: 60
-    webhook: https://europe-west1-lightweight-back-office-dev.cloudfunctions.net/indexQuestion
+    webhook: http://localhost:5001/lightweight-back-office/europe-west1/indexQuestion
