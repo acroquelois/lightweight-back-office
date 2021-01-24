@@ -1,7 +1,7 @@
 const indexQuestion = require('./hasuraWebhooks/indexQuestion')
-const getToken = require('./hasuraWebhooks/getToken')
-const authorization = require('./hasuraWebhooks/authorization')
+const createClaims = require('./token/createClaims')
+const verifyToken = require('./token/verifyToken')
 
 exports.indexQuestion = indexQuestion.indexQuestion
-exports.getToken = getToken.getToken
-exports.authorization = authorization.authorization
+exports.createClaims = createClaims.processSignUp
+exports.verifyToken = verifyToken.verifyToken
