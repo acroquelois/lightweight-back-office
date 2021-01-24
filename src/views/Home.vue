@@ -95,7 +95,7 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue'
 import { UnwrapRef } from 'vue-demi'
-import { useMutation, useQuery } from 'villus'
+import { useClient, useMutation, useQuery } from 'villus'
 import {
   Query_RootQuestionsArgs,
   Query_Root,
@@ -106,6 +106,7 @@ import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
 import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -114,7 +115,9 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const store = useStore()
     const showDeleteModal = ref(false)
+    useClient(store.getters.villusOpt)
     const { data, execute: executeGet } = useQuery<
       Query_Root,
       Query_RootQuestionsArgs
@@ -123,6 +126,12 @@ export default defineComponent({
       cachePolicy: 'network-only',
     })
     const questions = data
+
+    if (store.getters.lastRoute == 'Login') {
+      new Promise((resolve: any) => setTimeout(resolve, 1500)).then(() =>
+        executeGet({}),
+      )
+    }
 
     const editQuestion = (id: number) => {
       router.push({ name: 'Edit', params: { id: id } })

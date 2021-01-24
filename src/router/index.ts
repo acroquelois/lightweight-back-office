@@ -33,9 +33,9 @@ const router = createRouter({
   history: createWebHistory(),
 })
 
-// TODO: Store user token
-router.beforeEach((to, from, next) => {
-  const isLogged = store.getters.user
+router.beforeEach(async (to, from, next) => {
+  const isLogged = store.getters.isLogged
+  await store.dispatch('setLastRoute', from.name)
   if (!isLogged && to.path != '/login') {
     next({ name: 'Login' })
     return

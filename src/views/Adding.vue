@@ -23,7 +23,8 @@ import { INSERT_QUESTION } from '@/graphql/graphql'
 import { useRouter } from 'vue-router'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
-import { useMutation } from 'villus'
+import { useClient, useMutation } from 'villus'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -32,6 +33,8 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const store = useStore()
+    useClient(store.getters.villusOpt)
     const initQuestion = () => {
       return {
         Libelle: undefined,

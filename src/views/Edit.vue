@@ -36,7 +36,8 @@ import {
 import { useRouter } from 'vue-router'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
-import { useMutation, useQuery } from 'villus'
+import { useClient, useMutation, useQuery } from 'villus'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -45,6 +46,8 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const store = useStore()
+    useClient(store.getters.villusOpt)
     const { data } = useQuery<Query_Root, Query_RootQuestions_By_PkArgs>({
       query: GET_QUESTION_BY_ID,
       variables: { Id: Number(router.currentRoute.value.params.id) },
@@ -55,7 +58,7 @@ export default defineComponent({
     const { execute: executeSaveQuestion } = useMutation(UPDATE_QUESTION)
 
     const saveQuestion = () => {
-      //TODO: Voir la cast des objects query in mutation obj
+      //TODO: Voir la cast des objects query en mutation obj
       const variable: InsertQuestion = {
         Id: question.value?.Questions_by_pk?.Id,
         Libelle: question.value?.Questions_by_pk?.Libelle,

@@ -47,7 +47,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import firebase from 'firebase'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import Icon from '@/components/icons/Icon.vue'
@@ -65,17 +64,9 @@ export default defineComponent({
       password: '',
     })
 
-    const submit = () => {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(userAuth.username, userAuth.password)
-        .then(() => {
-          store.dispatch('')
-          router.replace({ name: 'Home' })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    const submit = async () => {
+      await store.dispatch('logIn', userAuth)
+      await router.push({ name: 'Home' })
     }
 
     return {
