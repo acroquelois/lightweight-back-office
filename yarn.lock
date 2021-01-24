@@ -11056,10 +11056,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-villus@^1.0.0-rc.4:
-  version "1.0.0-rc.9"
-  resolved "https://registry.yarnpkg.com/villus/-/villus-1.0.0-rc.9.tgz#b676bda0db2a04144e0981905e497f2701c9fa22"
-  integrity sha512-/7DcYOKeZKq5Wn8mWY5SpMRn3LoBs4O+CJv2wE9QHQgpaZWaj2sKxvCSMQbELZNPt51yt1RMpEWD2FNnJ9WIWA==
+villus@^1.0.0-rc.11:
+  version "1.0.0-rc.11"
+  resolved "https://registry.yarnpkg.com/villus/-/villus-1.0.0-rc.11.tgz#7cb993b39ad372f81d27445a46f69aa2cf656453"
+  integrity sha512-G7/djJi7T9SaN3RZL3B8Fd8Cf2v4leyN+DcfIy/qD7zP4tA8a7uA49a1lWp1f4QEr9BDboRqT+FwkdIPQ0tReQ==
   dependencies:
     vue-demi "^0.5.3"
 
@@ -11109,6 +11109,11 @@ vue-loader@^15.9.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-loading-overlay@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/vue-loading-overlay/-/vue-loading-overlay-3.4.2.tgz#34792a83218df1d35dff50121ce9fac2114f1c38"
+  integrity sha512-xcB+NPjl76eA0uggm707x3ZFgrNosZXpynHipyS3K+rrK1NztOV49R1LY+/4ij5W1KYANp7eRI2EIHrxCpmWAw==
 
 vue-router@^4.0.0-0:
   version "4.0.0-rc.3"
