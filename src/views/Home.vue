@@ -127,12 +127,6 @@ export default defineComponent({
     })
     const questions = data
 
-    if (store.getters.lastRoute == 'Login') {
-      new Promise((resolve: any) => setTimeout(resolve, 1500)).then(() =>
-        executeGet({}),
-      )
-    }
-
     const editQuestion = (id: number) => {
       router.push({ name: 'Edit', params: { id: id } })
     }

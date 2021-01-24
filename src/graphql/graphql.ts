@@ -55,6 +55,13 @@ export const GET_QUESTION_CATEGORIES = gql`
     }
   }
 `
+export const GET_TOKEN = gql`
+  mutation getToken($username: String!, $password: String!) {
+    getToken(arg: { password: $password, username: $username }) {
+      accessToken
+    }
+  }
+`
 
 export const DELETE_QUESTIONS = gql`
   mutation deleteQuestion($id: Int) {

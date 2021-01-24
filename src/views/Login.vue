@@ -49,7 +49,10 @@
 import { defineComponent, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { GET_TOKEN } from '@/graphql/graphql'
+import { SampleOutput } from '@/generated/graphql'
 import Icon from '@/components/icons/Icon.vue'
+import { useClient } from 'villus'
 
 export default defineComponent({
   components: {
@@ -58,15 +61,29 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const store = useStore()
-
+    const villusClient = useClient({
+      url: `${process.env.VUE_APP_HASURA_ENDPOINT_BASE_URL}/v1/graphql`,
+    })
     const userAuth = reactive({
       username: '',
       password: '',
     })
 
     const submit = async () => {
-      await store.dispatch('logIn', userAuth)
-      await router.push({ name: 'Home' })
+      try {
+        const {
+          data: {
+            getToken: { accessToken },
+          },
+        } = await villusClient.executeMutation<SampleOutput>({
+          variables: userAuth,
+          query: GET_TOKEN,
+        })
+        await store.dispatch('setToken', accessToken)
+        await router.push({ name: 'Home' })
+      } catch (e) {
+        console.log('[ERROR]: ', e)
+      }
     }
 
     return {

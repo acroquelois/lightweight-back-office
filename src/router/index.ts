@@ -35,7 +35,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const isLogged = store.getters.isLogged
-  await store.dispatch('setLastRoute', from.name)
   if (!isLogged && to.path != '/login') {
     next({ name: 'Login' })
     return
