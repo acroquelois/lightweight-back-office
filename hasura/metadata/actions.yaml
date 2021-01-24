@@ -1,6 +1,14 @@
-actions: []
+actions:
+- name: getToken
+  definition:
+    kind: synchronous
+    handler: http://8d20b76e982f.eu.ngrok.io/lightweight-back-office/europe-west1/getToken
 custom_types:
   enums: []
-  input_objects: []
-  objects: []
+  input_objects:
+  - name: SampleInput
+  - name: Credentials
+  objects:
+  - name: SampleOutput
+  - name: Token
   scalars: []

@@ -1,44 +1,163 @@
 - table:
     schema: public
     name: QuestionAnswers
+  array_relationships:
+  - name: Questions
+    using:
+      foreign_key_constraint_on:
+        column: QuestionAnswerId
+        table:
+          schema: public
+          name: Questions
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - Id
+      - Libelle
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      filter: {}
+      check: null
 - table:
     schema: public
     name: QuestionCategories
+  array_relationships:
+  - name: Questions
+    using:
+      foreign_key_constraint_on:
+        column: QuestionCategorieId
+        table:
+          schema: public
+          name: Questions
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - Id
+      - Libelle
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      filter: {}
+      check: null
 - table:
     schema: public
     name: QuestionPropositions
   object_relationships:
-    - name: Question
-      using:
-        foreign_key_constraint_on: QuestionId
+  - name: Question
+    using:
+      foreign_key_constraint_on: QuestionId
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - Id
+      - Libelle
+      - QuestionId
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - QuestionId
+      - Libelle
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - QuestionId
+      - Libelle
+      filter: {}
+      check: null
 - table:
     schema: public
     name: Questions
   object_relationships:
-    - name: QuestionAnswer
-      using:
-        foreign_key_constraint_on: QuestionAnswerId
-    - name: QuestionCategory
-      using:
-        foreign_key_constraint_on: QuestionCategorieId
-  event_triggers:
-    - name: indexQuestion
-      definition:
-        enable_manual: false
-        update:
-          columns:
-            - IsPublie
-      retry_conf:
-        num_retries: 0
-        interval_sec: 10
-        timeout_sec: 60
-#        TODO : Add env variable
-      webhook: "http://host.docker.internal:5001/lightweight-back-office/us-central1/indexquestion"
+  - name: QuestionAnswer
+    using:
+      foreign_key_constraint_on: QuestionAnswerId
+  - name: QuestionCategory
+    using:
+      foreign_key_constraint_on: QuestionCategorieId
   array_relationships:
-    - name: QuestionPropositions
-      using:
-        foreign_key_constraint_on:
-          column: QuestionId
-          table:
-            schema: public
-            name: QuestionPropositions
+  - name: QuestionPropositions
+    using:
+      foreign_key_constraint_on:
+        column: QuestionId
+        table:
+          schema: public
+          name: QuestionPropositions
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - IsPublie
+      - Id
+      - QuestionAnswerId
+      - QuestionCategorieId
+      - Libelle
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      - QuestionCategorieId
+      - QuestionAnswerId
+      - IsPublie
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - Id
+      - Libelle
+      - QuestionCategorieId
+      - QuestionAnswerId
+      - IsPublie
+      filter: {}
+      check: null
+  event_triggers:
+  - name: index-question
+    definition:
+      enable_manual: false
+      update:
+        columns:
+        - IsPublie
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: http://localhost:5001/lightweight-back-office/europe-west1/indexQuestion

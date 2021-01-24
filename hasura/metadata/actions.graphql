@@ -1,0 +1,27 @@
+type Mutation {
+  getToken (
+    arg: Credentials!
+  ): Token
+}
+
+
+
+
+input SampleInput {
+  username : String!
+  password : String!
+}
+
+input Credentials {
+  username : String!
+  password : String!
+}
+
+type SampleOutput {
+  accessToken : String!
+}
+
+type Token {
+  accessToken : String!
+}
+
