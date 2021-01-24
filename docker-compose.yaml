@@ -30,6 +30,7 @@ services:
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432
       HASURA_GRAPHQL_ADMIN_SECRET: questionsecretkey
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
       HASURA_GRAPHQL_JWT_SECRET: '{"type":"RS256","jwk_url": "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com","audience": "lightweight-back-office-dev","issuer": "https://securetoken.google.com/lightweight-back-office-dev" }'
     networks:
       - question
