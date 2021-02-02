@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "..",
     "types": ["webpack-env"],
     "paths": {
       "@/*": ["src/*"]
@@ -19,9 +19,9 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
+    "front/src/**/*.ts",
+    "front/src/**/*.tsx",
+    "front/src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

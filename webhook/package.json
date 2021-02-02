@@ -1,0 +1,20 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
