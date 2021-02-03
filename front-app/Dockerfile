@@ -1,3 +1,6 @@
+# Author: acroquelois
+# Date: 03/02/2021
+
 FROM node:lts-alpine
 RUN npm install -g http-server
 WORKDIR /app
