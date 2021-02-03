@@ -98,12 +98,12 @@ import {
   QuestionAnswers_Insert_Input,
   QuestionPropositions_Insert_Input,
   Questions_Insert_Input,
-} from '@/generated/graphql'
+} from '../../generated/graphql'
 import { useQuery } from 'villus'
 import {
   GET_QUESTION_CATEGORIES,
   QuestionCategoriesResponse,
-} from '@/graphql/graphql'
+} from '../../graphql/graphql'
 
 export default defineComponent({
   components: {

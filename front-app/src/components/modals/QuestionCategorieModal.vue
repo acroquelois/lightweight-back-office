@@ -63,7 +63,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { INSERT_QUESTION_CATEGORIE } from '@/graphql/graphql'
+import { INSERT_QUESTION_CATEGORIE } from '../../graphql/graphql'
 import { useMutation } from 'villus'
 
 export default defineComponent({

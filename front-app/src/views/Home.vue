@@ -101,8 +101,8 @@ import {
   Query_Root,
   QuestionPropositions,
   Questions,
-} from '@/generated/graphql'
-import { GET_QUESTIONS, DELETE_QUESTIONS } from '@/graphql/graphql'
+} from '../generated/graphql'
+import { GET_QUESTIONS, DELETE_QUESTIONS } from '../graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
 import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'

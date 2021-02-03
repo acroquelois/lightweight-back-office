@@ -18,7 +18,4 @@ const configOptions = {
 
 firebase.default.initializeApp(configOptions)
 
-createApp(App)
-    .use(store)
-    .use(router)
-    .mount('#app')
+createApp(App).use(store).use(router).mount('#app')

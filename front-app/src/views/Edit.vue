@@ -27,12 +27,12 @@ import {
   Query_Root,
   Query_RootQuestions_By_PkArgs,
   QuestionAnswers_Insert_Input,
-} from '@/generated/graphql'
+} from '../generated/graphql'
 import {
   GET_QUESTION_BY_ID,
   UPDATE_QUESTION,
   InsertQuestion,
-} from '@/graphql/graphql'
+} from '../graphql/graphql'
 import { useRouter } from 'vue-router'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'

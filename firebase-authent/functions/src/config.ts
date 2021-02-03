@@ -1,5 +1,6 @@
 import serviceAccount from './service_account.json'
-import * as admin from 'firebase-admin'
+
+const admin = require('firebase-admin')
 
 export const region = 'europe-west1'
 

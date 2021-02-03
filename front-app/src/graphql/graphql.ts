@@ -3,7 +3,7 @@ import {
   Maybe,
   Query_Root,
   QuestionAnswers_Insert_Input,
-} from '@/generated/graphql'
+} from '../generated/graphql'
 
 export const GET_QUESTIONS = gql`
   query getAllQuestion {

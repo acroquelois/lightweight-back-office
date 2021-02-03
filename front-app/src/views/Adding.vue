@@ -18,11 +18,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { INSERT_QUESTION } from '@/graphql/graphql'
-import { useRouter } from 'vue-router'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
+
+import { defineComponent, reactive } from 'vue'
+import { INSERT_QUESTION } from '../graphql/graphql'
+import { useRouter } from 'vue-router'
 import { useClient, useMutation } from 'villus'
 import { useStore } from 'vuex'
 
