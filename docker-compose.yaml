@@ -64,6 +64,14 @@ services:
     networks:
       - question
     restart: always
+  index-question-trigger:
+    image: docker.elastic.co/kibana/kibana:7.9.1
+    container_name: "index-question-trigger_dev"
+    ports:
+      - "9400:5000"
+    networks:
+      - question
+    restart: always
 volumes:
   db_data_pg:
   db_data_elastic:
