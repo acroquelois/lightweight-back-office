@@ -65,18 +65,19 @@ export default defineComponent({
     })
 
     const submit = async () => {
-      try {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(userAuth.username, userAuth.password)
-          .then((data: any) => {
-            console.log('data', data)
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(userAuth.username, userAuth.password)
+        .then((data: any) => {
+          data.user?.getIdTokenResult().then(async (idToken: any) => {
+            console.log('token:', idToken)
+            await store.dispatch('setToken', idToken.token)
+            await router.push({ name: 'Home' })
           })
-        // await store.dispatch('setToken', accessToken)
-        await router.push({ name: 'Home' })
-      } catch (e) {
-        console.log('[ERROR]: ', e)
-      }
+        })
+        .catch((error: any) => {
+          console.log('[ERROR]: Sign in', error)
+        })
     }
 
     return {
