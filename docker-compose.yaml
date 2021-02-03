@@ -1,7 +1,7 @@
 ﻿version: '3.6'
 services:
 #  front:
-#    build: .
+#    build: ./front-app/.
 #    container_name: "front_dev"
 #    ports:
 #      - "8080:8080"
@@ -31,6 +31,7 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432
       HASURA_GRAPHQL_ADMIN_SECRET: questionsecretkey
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_JWT_SECRET: '{"type":"RS256","jwk_url": "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com","audience": "lightweight-back-office-dev","issuer": "https://securetoken.google.com/lightweight-back-office-dev" }'
     networks:
       - question
@@ -65,7 +66,7 @@ services:
       - question
     restart: always
   index-question-trigger:
-    image: docker.elastic.co/kibana/kibana:7.9.1
+    image: acroquelois/index-question-trigger:1.1
     container_name: "index-question-trigger_dev"
     ports:
       - "9400:5000"
