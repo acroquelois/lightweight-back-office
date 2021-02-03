@@ -2,12 +2,11 @@
   "name": "functions",
   "scripts": {
     "build": "tsc",
-    "serve": "npm run build"
+    "serve": "tsc && node lib/index.js"
   },
   "engines": {
     "node": "12"
   },
-  "main": "lib/index.js",
   "dependencies": {
     "axios": "^0.21.0",
     "express": "^4.17.1"
