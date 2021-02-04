@@ -160,4 +160,4 @@
       num_retries: 0
       interval_sec: 10
       timeout_sec: 60
-    webhook: http://localhost:9400/index-question
+    webhook: http://host.docker.internal:9400/index-question

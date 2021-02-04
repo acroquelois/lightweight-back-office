@@ -61,9 +61,11 @@ function buildDeleteBody(questionId: any) {
 }
 
 async function getQuestionByPk(questionId: any) {
+  // TODO: env var
   const options: AxiosRequestConfig = {
     headers: {
       "Content-Type": "application/json",
+      "x-hasura-admin-secret": "questionsecretkey",
     },
   };
   return axios.default
@@ -111,7 +113,7 @@ app.post("/index-question", function (req: any, res: any) {
           res.status(200).json({ msg: "Question deindexed success" });
         })
         .catch(() => {
-          console.log(`[WARNING] : Indexation failed for question: ${Id}`);
+          console.log(`[WARNING] : Deindexation failed for question: ${Id}`);
           res.status(500).json({ msg: "Question deindexed failed" });
         });
     }
