@@ -49,15 +49,16 @@ function buildGetBody(id: any) {
 }
 
 function buildDeleteBody(questionId: any) {
-  return `{
-  "query": {
+  return `
+  {
+    "query": {
       "term": {
         "Id": {
           "value": ${questionId}
-          }
         }
-  }
-}`;
+      }
+    }
+  }`;
 }
 
 async function getQuestionByPk(questionId: any) {
@@ -83,15 +84,18 @@ async function getQuestionByPk(questionId: any) {
     });
 }
 async function indexQuestion(questionId: any) {
-  const question = await getQuestionByPk(questionId);
-  return axios.default.post(`${elacticURL}/questions/_doc/`, question);
+  const body = await getQuestionByPk(questionId);
+  return axios.default.post(`${elacticURL}/questions/_doc/`, body);
 }
 
 async function removeIndexQuestion(questionId: any): Promise<any> {
-  return axios.default.post(
-    `${elacticURL}/questions/_delete_by_query`,
-    buildDeleteBody(questionId)
-  );
+  const options: AxiosRequestConfig = {
+    headers: {
+      "Content-Type": "application/json"
+    },
+  };
+  const body = buildDeleteBody(questionId);
+  return axios.default.post(`${elacticURL}/questions/_delete_by_query`, body, options);
 }
 app.post("/index-question", function (req: any, res: any) {
   try {
