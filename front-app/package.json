@@ -17,7 +17,6 @@
     "graphql-tag": "^2.11.0",
     "postcss": "^7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "villus": "^1.0.0-rc.11",
     "vue": "^3.0.2",
     "vue-loading-overlay": "^3.4.2",
     "vue-router": "^4.0.0-0",
@@ -26,9 +25,8 @@
   "devDependencies": {
     "@graphql-codegen/cli": "1.19.2",
     "@graphql-codegen/typescript": "1.17.11",
-    "@graphql-codegen/typescript-graphql-request": "^3.0.2",
     "@graphql-codegen/typescript-operations": "^1.17.14",
-    "@graphql-codegen/typescript-urql": "^2.0.3",
+    "@graphql-codegen/typescript-vue-apollo": "^2.3.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

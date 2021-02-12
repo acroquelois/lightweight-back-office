@@ -1,11 +1,6 @@
 import gql from 'graphql-tag'
-import {
-  Maybe,
-  Query_Root,
-  QuestionAnswers_Insert_Input,
-} from '../generated/graphql'
 
-export const GET_QUESTIONS = gql`
+gql`
   query getAllQuestion {
     Questions {
       Id
@@ -24,7 +19,7 @@ export const GET_QUESTIONS = gql`
   }
 `
 
-export const GET_QUESTION_BY_ID = gql`
+gql`
   query getQuestionbyId($Id: Int!) {
     Questions_by_pk(Id: $Id) {
       Id
@@ -43,11 +38,7 @@ export const GET_QUESTION_BY_ID = gql`
   }
 `
 
-export interface QuestionCategoriesResponse {
-  QuestionCategories: Query_Root['QuestionCategories']
-}
-
-export const GET_QUESTION_CATEGORIES = gql`
+gql`
   query getQuestionCategories {
     QuestionCategories {
       Id
@@ -55,15 +46,8 @@ export const GET_QUESTION_CATEGORIES = gql`
     }
   }
 `
-export const GET_TOKEN = gql`
-  mutation getToken($username: String!, $password: String!) {
-    getToken(arg: { password: $password, username: $username }) {
-      accessToken
-    }
-  }
-`
 
-export const DELETE_QUESTIONS = gql`
+gql`
   mutation deleteQuestion($id: Int) {
     delete_Questions(where: { Id: { _eq: $id } }) {
       returning {
@@ -74,7 +58,7 @@ export const DELETE_QUESTIONS = gql`
   }
 `
 
-export const INSERT_QUESTION_CATEGORIE = gql`
+gql`
   mutation insertQuestionCategorie(
     $QuestionCategorie: QuestionCategories_insert_input!
   ) {
@@ -84,16 +68,7 @@ export const INSERT_QUESTION_CATEGORIE = gql`
   }
 `
 
-export type InsertQuestion = {
-  Id?: Maybe<number>
-  Libelle?: Maybe<string>
-  IsPublie?: Maybe<boolean>
-  QuestionCategorieId?: Maybe<number>
-  QuestionAnswer?: QuestionAnswers_Insert_Input
-  QuestionPropositions?: Array<QuestionAnswers_Insert_Input>
-}
-
-export const UPDATE_QUESTION = gql`
+gql`
   mutation insertQuestion(
     $Id: Int!
     $Libelle: String
@@ -133,8 +108,8 @@ export const UPDATE_QUESTION = gql`
   }
 `
 
-export const INSERT_QUESTION = gql`
-  mutation insertQuestion($Question: Questions_insert_input!) {
+gql`
+  mutation insertQuestionOne($Question: Questions_insert_input!) {
     insert_Questions_one(object: $Question) {
       Id
     }
