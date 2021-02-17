@@ -1,0 +1,16 @@
+query getAllQuestion {
+    Questions {
+        Id
+        Libelle
+        IsPublie
+        QuestionAnswer {
+            Libelle
+        }
+        QuestionCategory {
+            Libelle
+        }
+        QuestionPropositions {
+            Libelle
+        }
+    }
+}

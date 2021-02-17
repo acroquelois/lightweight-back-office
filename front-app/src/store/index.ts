@@ -1,5 +1,18 @@
 import { createStore } from 'vuex'
-import { defaultPlugins } from 'villus'
+
+const parseJwt = (token: string) => {
+  const base64Url = token.split('.')[1]
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join(''),
+  )
+  return JSON.parse(jsonPayload)
+}
 
 const store = createStore({
   state: {
@@ -13,21 +26,10 @@ const store = createStore({
       return !!state.token && getters.isTokenValid
     },
     isTokenValid(state): boolean {
-      let parsedToken = parseJwt(state.token)
-      let actualTimestamp = Math.round(new Date().getTime() / 1000)
+      const parsedToken = parseJwt(state.token)
+      const actualTimestamp = Math.round(new Date().getTime() / 1000)
       if (!parsedToken['exp']) return false
       return parsedToken['exp'] > actualTimestamp
-    },
-    villusOpt(state): any {
-      const authPlugin = ({ opContext }: any) => {
-        state.token
-          ? (opContext.headers['Authorization'] = `Bearer ${state.token}`)
-          : null
-      }
-      return {
-        url: `${process.env.VUE_APP_HASURA_ENDPOINT_BASE_URL}/v1/graphql`,
-        use: [authPlugin, ...defaultPlugins()],
-      }
     },
   },
   mutations: {
@@ -42,19 +44,5 @@ const store = createStore({
     },
   },
 })
-
-const parseJwt = (token: string) => {
-  let base64Url = token.split('.')[1]
-  let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  let jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join(''),
-  )
-  return JSON.parse(jsonPayload)
-}
 
 export default store

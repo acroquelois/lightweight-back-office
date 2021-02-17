@@ -93,20 +93,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue'
-import { UnwrapRef } from 'vue-demi'
-import { useClient, useMutation, useQuery } from 'villus'
+import { defineComponent, ref } from 'vue'
 import {
-  Query_RootQuestionsArgs,
-  Query_Root,
+  useGetAllQuestionQuery,
+  useDeleteQuestionMutation,
   QuestionPropositions,
-  Questions,
 } from '../generated/graphql'
-import { GET_QUESTIONS, DELETE_QUESTIONS } from '../graphql/graphql'
 import Icon from '@/components/icons/Icon.vue'
 import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -115,44 +110,22 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const store = useStore()
     const showDeleteModal = ref(false)
-    useClient(store.getters.villusOpt)
-    const { data, execute: executeGet } = useQuery<
-      Query_Root,
-      Query_RootQuestionsArgs
-    >({
-      query: GET_QUESTIONS,
-      cachePolicy: 'network-only',
-    })
-    const questions = data
 
+    const { data: questions } = useGetAllQuestionQuery()
     const editQuestion = (id: number) => {
       router.push({ name: 'Edit', params: { id: id } })
     }
 
-    const { execute: executeDelete, isDone: doneDelete } = useMutation(
-      DELETE_QUESTIONS,
-    )
+    const {
+      executeMutation: deleteQuestionMutation,
+    } = useDeleteQuestionMutation()
+
     const deleteQuestion = (id: number) => {
-      if (id) {
-        const variables = {
-          id: id,
-        }
-        executeDelete(variables)
-      }
+      if (id) deleteQuestionMutation({ id: id })
     }
 
-    watchEffect(() => {
-      if (doneDelete.value) {
-        executeGet({})
-        doneDelete.value = false
-      }
-    })
-
-    const computePropositions = (
-      propositions: UnwrapRef<Questions['QuestionPropositions']>,
-    ) => {
+    const computePropositions = (propositions: any) => {
       let response = ''
       propositions.forEach(
         (proposition: QuestionPropositions, index: number) => {

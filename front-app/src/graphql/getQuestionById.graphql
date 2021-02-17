@@ -1,0 +1,16 @@
+query getQuestionbyId($Id: Int!) {
+    Questions_by_pk(Id: $Id) {
+        Id
+        Libelle
+        IsPublie
+        QuestionAnswer {
+            Id
+            Libelle
+        }
+        QuestionCategorieId
+        QuestionPropositions {
+            Id
+            Libelle
+        }
+    }
+}

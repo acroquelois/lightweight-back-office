@@ -4,9 +4,9 @@
       <span>Add question:</span>
     </div>
     <question-form
-      v-model:question="question.data"
-      v-model:question-answer="question.data.QuestionAnswer.data"
-      v-model:questions-proposition="question.data.QuestionPropositions.data"
+      v-model:question="question"
+      v-model:question-answer="question.QuestionAnswer"
+      v-model:questions-proposition="question.QuestionPropositions"
       @save="saveQuestion"
     ></question-form>
     <fab-button
@@ -22,10 +22,11 @@ import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
 
 import { defineComponent, reactive } from 'vue'
-import { INSERT_QUESTION } from '../graphql/graphql'
 import { useRouter } from 'vue-router'
-import { useClient, useMutation } from 'villus'
-import { useStore } from 'vuex'
+import {
+  useInsertQuestionMutation,
+  Questions_Insert_Input,
+} from '../generated/graphql'
 
 export default defineComponent({
   components: {
@@ -34,42 +35,12 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const store = useStore()
-    useClient(store.getters.villusOpt)
-    const initQuestion = () => {
-      return {
-        Libelle: undefined,
-        QuestionAnswer: {
-          data: {
-            Libelle: undefined,
-          },
-        },
-        QuestionCategorieId: undefined,
-        QuestionPropositions: {
-          data: [
-            {
-              Libelle: undefined,
-            },
-            {
-              Libelle: undefined,
-            },
-            {
-              Libelle: undefined,
-            },
-          ],
-        },
-      }
-    }
-    const question = reactive({ data: initQuestion() })
-    const { execute: executeSaveQuestion } = useMutation(INSERT_QUESTION)
+    const question = reactive({} as Questions_Insert_Input)
 
-    const saveQuestion = () => {
-      const variable = {
-        Question: question.data,
-      }
-      executeSaveQuestion(variable)
-      question.data = initQuestion()
-    }
+    const {
+      executeMutation: insertQuestionMutation,
+    } = useInsertQuestionMutation()
+    const saveQuestion = () => insertQuestionMutation({ Question: question })
 
     const goToHome = () => {
       router.push({ name: 'Home' })

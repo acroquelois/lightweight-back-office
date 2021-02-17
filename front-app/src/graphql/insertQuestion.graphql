@@ -1,0 +1,5 @@
+mutation insertQuestion($Question: Questions_insert_input!) {
+    insert_Questions_one(object: $Question) {
+        Id
+    }
+}

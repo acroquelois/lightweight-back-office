@@ -23,21 +23,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import {
-  Query_Root,
-  Query_RootQuestions_By_PkArgs,
-  QuestionAnswers_Insert_Input,
-} from '../generated/graphql'
-import {
-  GET_QUESTION_BY_ID,
-  UPDATE_QUESTION,
-  InsertQuestion,
-} from '../graphql/graphql'
 import { useRouter } from 'vue-router'
+import {
+  QuestionPropositions_Insert_Input,
+  useGetQuestionbyIdQuery,
+  useUpdateQuestionMutation,
+} from '../generated/graphql'
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
-import { useClient, useMutation, useQuery } from 'villus'
-import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -46,32 +39,27 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const store = useStore()
-    useClient(store.getters.villusOpt)
-    const { data } = useQuery<Query_Root, Query_RootQuestions_By_PkArgs>({
-      query: GET_QUESTION_BY_ID,
+
+    const { data: question } = useGetQuestionbyIdQuery({
       variables: { Id: Number(router.currentRoute.value.params.id) },
-      cachePolicy: 'network-only',
     })
-    const question = data
 
-    const { execute: executeSaveQuestion } = useMutation(UPDATE_QUESTION)
-
-    const saveQuestion = () => {
-      //TODO: Voir la cast des objects query en mutation obj
-      const variable: InsertQuestion = {
-        Id: question.value?.Questions_by_pk?.Id,
-        Libelle: question.value?.Questions_by_pk?.Libelle,
-        IsPublie: question.value?.Questions_by_pk?.IsPublie,
-        QuestionCategorieId:
-          question.value?.Questions_by_pk?.QuestionCategorieId,
-        QuestionAnswer: (question.value?.Questions_by_pk
-          ?.QuestionAnswer as unknown) as QuestionAnswers_Insert_Input,
-        QuestionPropositions:
-          question.value?.Questions_by_pk?.QuestionPropositions,
-      }
-      executeSaveQuestion(variable)
-    }
+    const {
+      executeMutation: updateQuestionMutation,
+    } = useUpdateQuestionMutation()
+    const saveQuestion = () =>
+      question.value && question.value.Questions_by_pk
+        ? updateQuestionMutation({
+            Id: question.value.Questions_by_pk.Id,
+            Libelle: question.value.Questions_by_pk.Libelle,
+            IsPublie: question.value.Questions_by_pk.IsPublie ?? false,
+            QuestionCategorieId:
+              question.value.Questions_by_pk.QuestionCategorieId,
+            QuestionAnswer: question.value.Questions_by_pk.QuestionAnswer,
+            QuestionPropositions: question.value.Questions_by_pk
+              .QuestionPropositions as QuestionPropositions_Insert_Input,
+          })
+        : {}
 
     const goToHome = () => {
       router.push({ name: 'Home' })

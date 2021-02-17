@@ -1,0 +1,7 @@
+mutation insertQuestionCategorie(
+    $QuestionCategorie: QuestionCategories_insert_input!
+) {
+    insert_QuestionCategories_one(object: $QuestionCategorie) {
+        Id
+    }
+}

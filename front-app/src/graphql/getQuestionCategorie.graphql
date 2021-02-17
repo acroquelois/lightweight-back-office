@@ -1,0 +1,6 @@
+query getQuestionCategories {
+    QuestionCategories {
+        Id
+        Libelle
+    }
+}

@@ -63,8 +63,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { INSERT_QUESTION_CATEGORIE } from '../../graphql/graphql'
-import { useMutation } from 'villus'
+import { useInsertQuestionCategorieMutation } from '../../generated/graphql'
 
 export default defineComponent({
   props: {
@@ -76,16 +75,16 @@ export default defineComponent({
   emits: ['close'],
   setup(props, emits) {
     const categorie = ref('')
-    const { execute } = useMutation(INSERT_QUESTION_CATEGORIE)
+
+    const {
+      executeMutation: insertQuestionCategorieMutation,
+    } = useInsertQuestionCategorieMutation()
 
     const saveCategorie = () => {
       if (categorie.value.length) {
-        const variable = {
-          QuestionCategorie: {
-            Libelle: categorie.value,
-          },
-        }
-        execute(variable).then(() => {
+        insertQuestionCategorieMutation({
+          QuestionCategorie: { Libelle: categorie.value },
+        }).then(() => {
           emits.emit('close')
         })
         categorie.value = ''

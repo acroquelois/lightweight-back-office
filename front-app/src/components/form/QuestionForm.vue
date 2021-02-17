@@ -98,12 +98,8 @@ import {
   QuestionAnswers_Insert_Input,
   QuestionPropositions_Insert_Input,
   Questions_Insert_Input,
+  useGetQuestionCategoriesQuery,
 } from '../../generated/graphql'
-import { useQuery } from 'villus'
-import {
-  GET_QUESTION_CATEGORIES,
-  QuestionCategoriesResponse,
-} from '../../graphql/graphql'
 
 export default defineComponent({
   components: {
@@ -126,19 +122,10 @@ export default defineComponent({
   emits: ['save'],
   setup(props) {
     const showModal = ref(false)
-
-    const { data: categoriesResponse, execute: executeGetCategorie } = useQuery<
-      QuestionCategoriesResponse,
-      any
-    >({
-      query: GET_QUESTION_CATEGORIES,
-      cachePolicy: 'network-only',
-    })
-    const categories = categoriesResponse
+    const { data: categories } = useGetQuestionCategoriesQuery()
 
     const closeModal = () => {
       showModal.value = false
-      executeGetCategorie({})
     }
     return {
       props,
