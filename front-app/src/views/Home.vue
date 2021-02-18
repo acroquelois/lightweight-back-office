@@ -107,7 +107,9 @@ export default defineComponent({
     const toast = useToast()
 
     const showDeleteModal = ref(false)
-    const getAllQuestionQuery = useGetAllQuestionQuery()
+    const getAllQuestionQuery = useGetAllQuestionQuery({
+      requestPolicy: 'network-only',
+    })
 
     const editQuestion = (id: number) => {
       router.push({ name: 'Edit', params: { id: id } })
