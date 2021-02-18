@@ -37,10 +37,17 @@ const store = createStore({
       state.token = payload
       localStorage.setItem('token', payload)
     },
+    REMOVE_TOKEN(state) {
+      localStorage.removeItem('token')
+      state.token = ''
+    },
   },
   actions: {
     async setToken({ commit }, token) {
       commit('SET_TOKEN', token)
+    },
+    async removeToken({ commit }) {
+      commit('REMOVE_TOKEN')
     },
   },
 })
