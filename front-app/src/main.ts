@@ -3,10 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import urql from '@urql/vue'
+import Toast from 'vue-toastification'
 
 import * as firebase from 'firebase'
 
 import './assets/styles/tailwind.css'
+import 'vue-toastification/dist/index.css'
 
 // Init firebase
 const configOptions = {
@@ -32,4 +34,9 @@ const urqlClient = {
 }
 
 // Init app
-createApp(App).use(store).use(router).use(urql, urqlClient).mount('#app')
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(urql, urqlClient)
+  .use(Toast, {})
+  .mount('#app')

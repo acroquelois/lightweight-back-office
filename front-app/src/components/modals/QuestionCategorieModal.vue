@@ -64,6 +64,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useInsertQuestionCategorieMutation } from '../../generated/graphql'
+import { useToast } from 'vue-toastification'
 
 export default defineComponent({
   props: {
@@ -74,6 +75,7 @@ export default defineComponent({
   },
   emits: ['close'],
   setup(props, emits) {
+    const toast = useToast()
     const categorie = ref('')
 
     const {
@@ -84,9 +86,14 @@ export default defineComponent({
       if (categorie.value.length) {
         insertQuestionCategorieMutation({
           QuestionCategorie: { Libelle: categorie.value },
-        }).then(() => {
-          emits.emit('close')
         })
+          .then(() => {
+            toast.success('Question categorie added with success')
+            emits.emit('close')
+          })
+          .catch(() => {
+            toast.error('Question categorie added error')
+          })
         categorie.value = ''
       }
     }

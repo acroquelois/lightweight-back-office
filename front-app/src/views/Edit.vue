@@ -24,6 +24,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import {
   QuestionPropositions_Insert_Input,
   useGetQuestionbyIdQuery,
@@ -39,6 +40,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const toast = useToast()
     const goToHome = () => {
       router.push({ name: 'Home' })
     }
@@ -62,6 +64,8 @@ export default defineComponent({
             QuestionPropositions: question.value.Questions_by_pk
               .QuestionPropositions as QuestionPropositions_Insert_Input,
           })
+            .then(() => toast.success('Question updated with success'))
+            .catch(() => toast.error('Question updated error'))
         : {}
 
     return {

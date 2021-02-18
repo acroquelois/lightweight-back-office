@@ -23,6 +23,7 @@ import QuestionForm from '@/components/form/QuestionForm.vue'
 
 import { defineComponent, reactive, UnwrapRef } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import {
   useInsertQuestionMutation,
   Questions_Insert_Input,
@@ -35,9 +36,12 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const toast = useToast()
+
     const goToHome = () => {
       router.push({ name: 'Home' })
     }
+
     const createEmptyQuestion = (): Questions_Insert_Input => {
       return {
         QuestionAnswer: { data: {} },
@@ -49,11 +53,20 @@ export default defineComponent({
     const question: UnwrapRef<Questions_Insert_Input> = reactive(
       createEmptyQuestion(),
     )
+
     const {
       executeMutation: insertQuestionMutation,
     } = useInsertQuestionMutation()
+
     const saveQuestion = () =>
-      insertQuestionMutation({ Question: question }).then(() => goToHome())
+      insertQuestionMutation({ Question: question })
+        .then(() => {
+          toast.success('Question added with success')
+          goToHome()
+        })
+        .catch(() => {
+          toast.error('Question added error')
+        })
 
     return {
       question,

@@ -95,6 +95,7 @@ import {
 import Icon from '@/components/icons/Icon.vue'
 import FabButton from '@/components/buttons/FabButton.vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
 export default defineComponent({
   components: {
@@ -103,6 +104,8 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const toast = useToast()
+
     const showDeleteModal = ref(false)
     const getAllQuestionQuery = useGetAllQuestionQuery()
 
@@ -115,7 +118,10 @@ export default defineComponent({
     } = useDeleteQuestionByPkMutation()
 
     const deleteQuestion = (id: number) => {
-      if (id) deleteQuestionMutation({ Id: id })
+      if (id)
+        deleteQuestionMutation({ Id: id })
+          .then(() => toast.success('Question deleted with success'))
+          .catch(() => toast.error('Question deleted with error'))
     }
 
     const computePropositions = (propositions: any) => {

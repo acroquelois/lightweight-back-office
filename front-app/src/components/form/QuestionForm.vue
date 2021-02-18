@@ -29,6 +29,7 @@
       <button
         class="bg-yellow-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none"
         style="transition: all 0.15s ease"
+        type="button"
         @click="showModal = true"
       >
         Add
