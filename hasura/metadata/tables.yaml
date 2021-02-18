@@ -32,6 +32,10 @@
       - Libelle
       filter: {}
       check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter: {}
 - table:
     schema: public
     name: QuestionCategories
@@ -66,6 +70,10 @@
       - Libelle
       filter: {}
       check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter: {}
 - table:
     schema: public
     name: QuestionPropositions
@@ -99,6 +107,10 @@
       - Libelle
       filter: {}
       check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter: {}
 - table:
     schema: public
     name: Questions
@@ -149,6 +161,10 @@
       - IsPublie
       filter: {}
       check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter: {}
   event_triggers:
   - name: index-question
     definition:
