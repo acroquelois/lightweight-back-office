@@ -82,13 +82,6 @@
       </div>
       <fab-button icon="plus" @on-click="goToAdding"></fab-button>
     </template>
-    <!--    <delete-modal-->
-    <!--      ref="deleteModal"-->
-    <!--      title="Delete"-->
-    <!--      message="Do you want delete this question ?"-->
-    <!--      :show-modal="showDeleteModal"-->
-    <!--      @close="showDeleteModal = false"-->
-    <!--    ></delete-modal>-->
   </div>
 </template>
 
@@ -96,7 +89,7 @@
 import { defineComponent, ref } from 'vue'
 import {
   useGetAllQuestionQuery,
-  useDeleteQuestionMutation,
+  useDeleteQuestionByPkMutation,
   QuestionPropositions,
 } from '../generated/graphql'
 import Icon from '@/components/icons/Icon.vue'
@@ -111,18 +104,18 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const showDeleteModal = ref(false)
+    const getAllQuestionQuery = useGetAllQuestionQuery()
 
-    const { data: questions } = useGetAllQuestionQuery()
     const editQuestion = (id: number) => {
       router.push({ name: 'Edit', params: { id: id } })
     }
 
     const {
       executeMutation: deleteQuestionMutation,
-    } = useDeleteQuestionMutation()
+    } = useDeleteQuestionByPkMutation()
 
     const deleteQuestion = (id: number) => {
-      if (id) deleteQuestionMutation({ id: id })
+      if (id) deleteQuestionMutation({ Id: id })
     }
 
     const computePropositions = (propositions: any) => {
@@ -142,7 +135,7 @@ export default defineComponent({
     }
 
     return {
-      questions,
+      questions: getAllQuestionQuery.data,
       computePropositions,
       editQuestion,
       showDeleteModal,

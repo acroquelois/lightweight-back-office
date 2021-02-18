@@ -1695,14 +1695,12 @@ export type Subscription_RootQuestions_By_PkArgs = {
   Id: Scalars['Int']
 }
 
-export type DeleteQuestionMutationVariables = Exact<{
-  id?: Maybe<Scalars['Int']>
+export type DeleteQuestionByPkMutationVariables = Exact<{
+  Id: Scalars['Int']
 }>
 
-export type DeleteQuestionMutation = {
-  delete_Questions?: Maybe<{
-    returning: Array<Pick<Questions, 'Id' | 'Libelle'>>
-  }>
+export type DeleteQuestionByPkMutation = {
+  delete_Questions_by_pk?: Maybe<Pick<Questions, 'Id'>>
 }
 
 export type GetAllQuestionQueryVariables = Exact<{ [key: string]: never }>
@@ -1769,22 +1767,19 @@ export type UpdateQuestionMutation = {
   insert_Questions_one?: Maybe<Pick<Questions, 'Id'>>
 }
 
-export const DeleteQuestionDocument = gql`
-  mutation deleteQuestion($id: Int) {
-    delete_Questions(where: { Id: { _eq: $id } }) {
-      returning {
-        Id
-        Libelle
-      }
+export const DeleteQuestionByPkDocument = gql`
+  mutation deleteQuestionByPk($Id: Int!) {
+    delete_Questions_by_pk(Id: $Id) {
+      Id
     }
   }
 `
 
-export function useDeleteQuestionMutation() {
+export function useDeleteQuestionByPkMutation() {
   return Urql.useMutation<
-    DeleteQuestionMutation,
-    DeleteQuestionMutationVariables
-  >(DeleteQuestionDocument)
+    DeleteQuestionByPkMutation,
+    DeleteQuestionByPkMutationVariables
+  >(DeleteQuestionByPkDocument)
 }
 export const GetAllQuestionDocument = gql`
   query getAllQuestion {

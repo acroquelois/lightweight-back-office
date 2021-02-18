@@ -52,27 +52,11 @@
           class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:shadow-outline w-full"
         />
       </div>
-      <div class="flex-1">
+      <div v-for="index in 3" :key="index" class="flex-1">
         <input
-          v-model="props.questionsProposition[0].Libelle"
+          v-model="props.questionsProposition[index - 1].Libelle"
           type="text"
-          placeholder="Proposition 1"
-          class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:shadow-outline w-full"
-        />
-      </div>
-      <div class="flex-1">
-        <input
-          v-model="props.questionsProposition[1].Libelle"
-          type="text"
-          placeholder="Proposition 2"
-          class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:shadow-outline w-full"
-        />
-      </div>
-      <div class="flex-1">
-        <input
-          v-model="props.questionsProposition[2].Libelle"
-          type="text"
-          placeholder="Proposition 3"
+          :placeholder="`Proposition ${index}`"
           class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:shadow-outline w-full"
         />
       </div>
@@ -123,7 +107,6 @@ export default defineComponent({
   setup(props) {
     const showModal = ref(false)
     const { data: categories } = useGetQuestionCategoriesQuery()
-
     const closeModal = () => {
       showModal.value = false
     }

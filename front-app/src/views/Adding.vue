@@ -5,8 +5,8 @@
     </div>
     <question-form
       v-model:question="question"
-      v-model:question-answer="question.QuestionAnswer"
-      v-model:questions-proposition="question.QuestionPropositions"
+      v-model:question-answer="question.QuestionAnswer.data"
+      v-model:questions-proposition="question.QuestionPropositions.data"
       @save="saveQuestion"
     ></question-form>
     <fab-button
@@ -21,7 +21,7 @@
 import FabButton from '@/components/buttons/FabButton.vue'
 import QuestionForm from '@/components/form/QuestionForm.vue'
 
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, UnwrapRef } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   useInsertQuestionMutation,
@@ -35,16 +35,25 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const question = reactive({} as Questions_Insert_Input)
-
-    const {
-      executeMutation: insertQuestionMutation,
-    } = useInsertQuestionMutation()
-    const saveQuestion = () => insertQuestionMutation({ Question: question })
-
     const goToHome = () => {
       router.push({ name: 'Home' })
     }
+    const createEmptyQuestion = (): Questions_Insert_Input => {
+      return {
+        QuestionAnswer: { data: {} },
+        QuestionPropositions: {
+          data: [{}, {}, {}],
+        },
+      }
+    }
+    const question: UnwrapRef<Questions_Insert_Input> = reactive(
+      createEmptyQuestion(),
+    )
+    const {
+      executeMutation: insertQuestionMutation,
+    } = useInsertQuestionMutation()
+    const saveQuestion = () =>
+      insertQuestionMutation({ Question: question }).then(() => goToHome())
 
     return {
       question,

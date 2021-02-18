@@ -1,0 +1,5 @@
+mutation deleteQuestionByPk($Id: Int!) {
+    delete_Questions_by_pk(Id: $Id) {
+        Id
+    }
+}

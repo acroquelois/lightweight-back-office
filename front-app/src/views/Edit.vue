@@ -39,6 +39,9 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const goToHome = () => {
+      router.push({ name: 'Home' })
+    }
 
     const { data: question } = useGetQuestionbyIdQuery({
       variables: { Id: Number(router.currentRoute.value.params.id) },
@@ -60,10 +63,6 @@ export default defineComponent({
               .QuestionPropositions as QuestionPropositions_Insert_Input,
           })
         : {}
-
-    const goToHome = () => {
-      router.push({ name: 'Home' })
-    }
 
     return {
       question,

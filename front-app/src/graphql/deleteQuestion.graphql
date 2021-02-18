@@ -1,8 +1,0 @@
-mutation deleteQuestion($id: Int) {
-    delete_Questions(where: { Id: { _eq: $id } }) {
-        returning {
-            Id
-            Libelle
-        }
-    }
-}
