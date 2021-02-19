@@ -26,62 +26,63 @@
         <span class="px-3">Action</span>
       </div>
     </div>
-    <template v-if="questions">
-      <div class="p-1 bg-blue-200 space-y-1">
-        <div
-          class="flex"
-          v-for="question in questions.Questions"
-          :key="question.Id"
-        >
-          <div class="p-1 flex flex-1 bg-gray-200 rounded-md">
-            <div
-              class="flex flex-1 max-w-sm justify-center"
-              style="max-width: 200px"
-            >
-              <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
-            </div>
-            <div class="flex flex-1">
-              <span class="px-3">{{ question.Libelle }}</span>
-            </div>
-            <div class="flex flex-1 justify-center">
-              <span class="px-3">{{ question.QuestionAnswer.Libelle }}</span>
-            </div>
-            <div class="flex flex-1 justify-center">
-              <span class="px-3">{{
-                computePropositions(question.QuestionPropositions)
-              }}</span>
-            </div>
-            <div class="flex flex-1 justify-center items-center">
-              <input
-                class="h-5 w-5"
-                type="checkbox"
-                v-model="question.IsPublie"
-                disabled
-              />
-            </div>
-            <div class="flex-1" style="max-width: 100px">
-              <div class="flex justify-center">
-                <icon
-                  class="mr-2"
-                  name="edit-2"
-                  color="#2563EB"
-                  :clickable="true"
-                  @on-click="editQuestion(question.Id)"
-                ></icon>
-                <icon
-                  class="ml-2"
-                  name="trash-2"
-                  color="#EF4444"
-                  :clickable="true"
-                  @on-click="deleteQuestion(question.Id)"
-                ></icon>
-              </div>
+    <div class="p-1 bg-blue-200 space-y-1 rounded-b-md">
+      <span v-if="isFetching">Loading...</span>
+      <div
+        v-else-if="questions.Questions.length"
+        class="flex"
+        v-for="question in questions.Questions"
+        :key="question.Id"
+      >
+        <div class="p-1 flex flex-1 bg-gray-200 rounded-md">
+          <div
+            class="flex flex-1 max-w-sm justify-center"
+            style="max-width: 200px"
+          >
+            <span class="px-3">{{ question.QuestionCategory.Libelle }}</span>
+          </div>
+          <div class="flex flex-1">
+            <span class="px-3">{{ question.Libelle }}</span>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <span class="px-3">{{ question.QuestionAnswer.Libelle }}</span>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <span class="px-3">{{
+              computePropositions(question.QuestionPropositions)
+            }}</span>
+          </div>
+          <div class="flex flex-1 justify-center items-center">
+            <input
+              class="h-5 w-5"
+              type="checkbox"
+              v-model="question.IsPublie"
+              disabled
+            />
+          </div>
+          <div class="flex-1" style="max-width: 100px">
+            <div class="flex justify-center">
+              <icon
+                class="mr-2"
+                name="edit-2"
+                color="#2563EB"
+                :clickable="true"
+                @on-click="editQuestion(question.Id)"
+              ></icon>
+              <icon
+                class="ml-2"
+                name="trash-2"
+                color="#EF4444"
+                :clickable="true"
+                @on-click="deleteQuestion(question.Id)"
+              ></icon>
             </div>
           </div>
         </div>
       </div>
-      <fab-button icon="plus" @on-click="goToAdding"></fab-button>
-    </template>
+      <span v-else>No question to diplay</span>
+    </div>
+    <fab-button icon="plus" @on-click="goToAdding"></fab-button>
   </div>
 </template>
 
@@ -144,6 +145,8 @@ export default defineComponent({
 
     return {
       questions: getAllQuestionQuery.data,
+      isFetching: getAllQuestionQuery.fetching,
+      isDone: getAllQuestionQuery.stale,
       computePropositions,
       editQuestion,
       showDeleteModal,

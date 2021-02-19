@@ -36,7 +36,7 @@
               type="submit"
               style="transition: all 0.15s ease"
             >
-              Sign In
+              {{ isLoading ? 'Loading' : 'Sign in' }}
             </button>
           </div>
         </div>
@@ -46,9 +46,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { useToast } from 'vue-toastification'
 import firebase from 'firebase'
 import Icon from '@/components/icons/Icon.vue'
 
@@ -59,30 +60,37 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const store = useStore()
+    const toaster = useToast()
+
+    const isLoading = ref(false)
     const userAuth = reactive({
       username: '',
       password: '',
     })
 
     const submit = async () => {
+      isLoading.value = true
       firebase
         .auth()
         .signInWithEmailAndPassword(userAuth.username, userAuth.password)
         .then((data: any) => {
           data.user?.getIdTokenResult().then(async (idToken: any) => {
-            console.log('token:', idToken)
             await store.dispatch('setToken', idToken.token)
             await router.push({ name: 'Home' })
           })
         })
-        .catch((error: any) => {
-          console.log('[ERROR]: Sign in', error)
+        .catch(() => {
+          toaster.error('Wrong username or password')
+        })
+        .finally(() => {
+          isLoading.value = false
         })
     }
 
     return {
       userAuth,
       submit,
+      isLoading,
     }
   },
 })
