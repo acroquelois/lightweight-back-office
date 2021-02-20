@@ -1,13 +1,13 @@
 ﻿version: '3.6'
 services:
-#  front:
-#    build: ./front-app/.
-#    container_name: "front_dev"
-#    ports:
-#      - "8080:8080"
-#    networks:
-#      - question
-#    restart: always
+  front:
+    build: ./front-app/.
+    container_name: "front_dev"
+    ports:
+      - "8080:8080"
+    networks:
+      - question
+    restart: always
   postgres:
     image: postgres:12
     container_name: "postgres_hasura_dev"
