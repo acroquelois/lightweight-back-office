@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex justify-center">
-    <div class="self-center text-gray-700 bg-gray-200 rounded-md">
+    <div class="self-center text-gray-700 bg-gray-200 rounded-md shadow-lg">
       <form action="#" @submit.prevent="submit">
         <div class="space-y-4 px-8 py-4">
           <span class="text-4xl font-bold">Sign In</span>
